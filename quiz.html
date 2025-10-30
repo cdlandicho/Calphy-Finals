@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz</title>
+  <link rel="stylesheet" href="quiz.css" />
+</head>
+<body>
+  <!-- Intro Card -->
+  <div class="quiz-wrapper" id="intro-card">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
+
+    <div class="quiz-container">
+      <h1 class="intro-text">Time to test your knowledge!</h1>
+      <button id="start-btn">Start</button>
+    </div>
+  </div>
+
+  <!-- Quiz Wrapper -->
+  <div class="quiz-wrapper" id="quiz-wrapper" style="display: none;">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
+
+    <div class="quiz-container">
+      <h2 class="question">
+        A cube with side length 10 cm is submerged in water. If the density of water is 1000 kg/m³,
+        what is the buoyant force on the cube? (g = 10 m/s²)
+      </h2>
+
+      <div class="options">
+        <button class="option">5N</button>
+        <button class="option">20N</button>
+        <button class="option">10N</button>
+        <button class="option">15N</button>
+      </div>
+
+      <div class="bottom-bar">
+        <button class="nav-btn prev">◀ Previous</button>
+        <div class="progress"><span id="current">1</span> / 25</div>
+        <button class="nav-btn next">Next ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+</html>

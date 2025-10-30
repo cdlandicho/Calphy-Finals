@@ -1,0 +1,167 @@
+/* === Blue background with GIF === */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url('asset/CALPH-bg.gif') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* === Quiz Wrapper === */
+.quiz-wrapper {
+  position: relative;
+  width: 650px;
+  height: 420px;
+}
+
+/* === Blue tilted layers === */
+.layer {
+  position: absolute;
+  border-radius: 18px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 1s ease, opacity 0.8s ease;
+}
+
+.layer.dark {
+  background-color: #0A2859;
+  transform: rotate(-6deg);
+  top: 30px;
+  left: -25px;
+}
+
+.layer.light {
+  background-color: #007BFF;
+  transform: rotate(4deg);
+  top: -15px;
+  left: 20px;
+}
+
+/* === White container === */
+.quiz-container {
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+  border-radius: 18px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 35px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* === Intro Text === */
+.intro-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0A2859;
+  margin-bottom: 30px;
+}
+
+/* === Start Button === */
+#start-btn {
+  background-color: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 12px 40px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#start-btn:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* === Question === */
+.question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* === Options === */
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.option {
+  background-color: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* === Correct/Wrong === */
+.option.correct {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.option.wrong {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.option.disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* === Bottom Bar === */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.nav-btn {
+  background: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+.progress {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
