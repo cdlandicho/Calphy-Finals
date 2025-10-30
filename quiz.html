@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz</title>
-  <link rel="stylesheet" href="quiz.css">
+  <link rel="stylesheet" href="quiz.css" />
 </head>
 <body>
-  <div class="quiz-wrapper">
-    <!-- Layered colored cards -->
-    <div class="layer layer-dark-blue"></div>
-    <div class="layer layer-blue"></div>
+  <!-- Intro Card -->
+  <div class="quiz-wrapper" id="intro-card">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
 
-    <!-- Main quiz box -->
+    <div class="quiz-container">
+      <h1 class="intro-text">Time to test your knowledge!</h1>
+      <button id="start-btn">Start</button>
+    </div>
+  </div>
+
+  <!-- Quiz Wrapper -->
+  <div class="quiz-wrapper" id="quiz-wrapper" style="display: none;">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
+
     <div class="quiz-container">
       <h2 class="question">
         A cube with side length 10 cm is submerged in water. If the density of water is 1000 kg/m³,
@@ -27,9 +37,9 @@
       </div>
 
       <div class="bottom-bar">
-        <button class="nav-btn prev">◀</button>
+        <button class="nav-btn prev">◀ Previous</button>
         <div class="progress"><span id="current">1</span> / 25</div>
-        <button class="nav-btn next">▶</button>
+        <button class="nav-btn next">Next ▶</button>
       </div>
     </div>
   </div>
