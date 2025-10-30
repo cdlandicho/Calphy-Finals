@@ -1,0 +1,140 @@
+/* === Blue background with GIF === */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url('asset/CALPH-bg.gif') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* === Wrapper for layers and main card === */
+.quiz-wrapper {
+  position: relative;
+  width: 600px;
+  height: 370px;
+}
+
+/* === Base style for each layer === */
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+/* === Dark blue back layer (bottom) === */
+.layer-dark-blue {
+  background-color: #1a3b8f;
+  top: 30px;
+  left: 30px;
+  z-index: 1;
+  transform: rotate(-2deg);
+}
+
+/* === Bright blue layer (middle) === */
+.layer-blue {
+  background-color: #2a7dff;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+  transform: rotate(1deg);
+}
+
+/* === White quiz container (top) === */
+.quiz-container {
+  position: absolute;
+  z-index: 3;
+  background-color: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  padding: 35px 40px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* === Question text === */
+.question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* === Options grid === */
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.option {
+  background-color: transparent;
+  border: 2px solid #4ba3ff;
+  border-radius: 50px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option:hover {
+  background-color: #e7f3ff;
+}
+
+/* === Selected option === */
+.option.selected {
+  background-color: #173F74;
+  color: white;
+  border: none;
+}
+
+/* === Feedback colors === */
+.option.correct {
+  background-color: #28a745; /* green */
+  color: white;
+  border: none;
+}
+
+.option.wrong {
+  background-color: #dc3545; /* red */
+  color: white;
+  border: none;
+}
+
+.option.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* === Bottom navigation bar === */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: #173F74;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.progress {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
