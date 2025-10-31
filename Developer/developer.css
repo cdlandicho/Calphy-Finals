@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  background: url('/Calphy-Finals/image/CALPH-bg.gif') center center / cover no-repeat;
+  background: url('/image/CALPH-bg.gif') center center / cover no-repeat;
   background-color: black;
 }
 

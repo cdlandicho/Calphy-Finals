@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background: url('asset/CALPH-bg.gif') no-repeat center center fixed;
+  background: url('/image/CALPH-bg.gif') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   align-items: center;
