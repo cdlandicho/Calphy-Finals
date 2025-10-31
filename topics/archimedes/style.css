@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Background using your GIF */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  background: url("../asset-topics/CALPH-bg.gif") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  padding: 15px 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 40px;
+  z-index: 10;
+}
+
+.navbar .logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.navbar nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar nav a.sign-in {
+  border: 1px solid white;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+/* Sections */
+main {
+  margin-top: 160px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px 10%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  margin: 40px auto;
+  width: 80%;
+  transition: 0.3s ease;
+}
+
+.section:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* --- Archimedes’ Principle Layout --- */
+.section:first-of-type {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section .text {
+  max-width: 800px;
+  flex: 1;
+  text-align: justify;
+}
+
+.section h2 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.section p {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: #e0e0e0;
+}
+
+/* Image Box */
+.section .image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section .image-box img {
+  width: 80%;
+  max-width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Calculator Section (for later sections) */
+.calculator {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.calculator input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.calculator button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5aa9f8;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.calculator button:hover {
+  background-color: #7ac3ff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .section {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 30px;
+  }
+
+  .section .image-box img {
+    width: 200px;
+    margin-top: 30px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+  }
+}
