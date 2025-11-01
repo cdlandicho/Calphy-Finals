@@ -1,15 +1,16 @@
-// === Elements ===
 const startBtn = document.getElementById('start-btn');
 const introCard = document.getElementById('intro-card');
 const quizWrapper = document.getElementById('quiz-wrapper');
-const darkLayer = quizWrapper.querySelector('.layer.dark');
-const lightLayer = quizWrapper.querySelector('.layer.light');
-const nextBtn = document.getElementById('next-btn');
-const prevBtn = document.getElementById('prev-btn');
+const resultWrapper = document.getElementById('result-wrapper');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
+const nextBtn = document.getElementById('next-btn');
+const prevBtn = document.getElementById('prev-btn');
 const currentSpan = document.getElementById('current');
 const totalSpan = document.getElementById('total');
+const scoreText = document.getElementById('score-text');
+const messageText = document.getElementById('message-text');
+const restartBtn = document.getElementById('restart-btn');
 
 // === Questions ===
 const quizData = [
@@ -169,111 +170,98 @@ const quizData = [
     options: ["100 Pa", "300 Pa", "200 Pa", "400 Pa"],
     answer: "400 Pa"
   },
- 
 ];
 
 // === Setup ===
-totalSpan.textContent = quizData.length;
 let currentQuestion = 0;
 let userAnswers = Array(quizData.length).fill(null);
+totalSpan.textContent = quizData.length;
 
-// === Animation ===
-function animateFlyAway() {
-  // Fly away
-  darkLayer.style.transition = "transform 0.9s cubic-bezier(0.4, 0, 1, 1), opacity 0.9s ease-in";
-  lightLayer.style.transition = "transform 0.9s cubic-bezier(0.4, 0, 1, 1), opacity 0.9s ease-in";
-
-  darkLayer.style.transform = "translate(-400px, -300px) rotate(-40deg) scale(0.8)";
-  lightLayer.style.transform = "translate(400px, 300px) rotate(40deg) scale(0.8)";
-  darkLayer.style.opacity = "0";
-  lightLayer.style.opacity = "0";
-
-  // Come back
-  setTimeout(() => {
-    darkLayer.style.transition = "transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.9s ease-out";
-    lightLayer.style.transition = "transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.9s ease-out";
-
-    darkLayer.style.transform = "rotate(-6deg) translate(0, 0) scale(1)";
-    lightLayer.style.transform = "rotate(4deg) translate(0, 0) scale(1)";
-    darkLayer.style.opacity = "1";
-    lightLayer.style.opacity = "1";
-  }, 900);
-}
-
-// === Load Question ===
 function loadQuestion() {
   const q = quizData[currentQuestion];
-  questionText.textContent = q.question;
-  optionsContainer.innerHTML = "";
 
-  q.options.forEach((opt) => {
-    const btn = document.createElement("button");
-    btn.classList.add("option");
-    btn.textContent = opt;
+  // Remove fade classes first (reset state)
+  questionText.classList.remove("show");
+  optionsContainer.classList.remove("show");
 
-    // restore previous selected answer
-    if (userAnswers[currentQuestion]) {
-      btn.classList.add("disabled");
-      if (opt === q.answer) btn.classList.add("correct");
-      if (opt === userAnswers[currentQuestion] && opt !== q.answer)
-        btn.classList.add("wrong");
-    }
+  // Apply base fade class
+  questionText.classList.add("fade");
+  optionsContainer.classList.add("fade");
 
-    btn.addEventListener("click", () => checkAnswer(btn, q.answer));
-    optionsContainer.appendChild(btn);
-  });
+  // Wait a bit before updating text to make transition smooth
+  setTimeout(() => {
+    questionText.textContent = q.question;
+    optionsContainer.innerHTML = "";
 
-  // update progress
-  currentSpan.textContent = currentQuestion + 1;
-  prevBtn.disabled = currentQuestion === 0;
-  nextBtn.disabled = currentQuestion === quizData.length - 1;
+    q.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.classList.add("option");
+      btn.textContent = opt;
+      btn.onclick = () => selectAnswer(btn, q.answer);
+      optionsContainer.appendChild(btn);
+    });
+
+    currentSpan.textContent = currentQuestion + 1;
+
+    // Trigger fade-in
+    setTimeout(() => {
+      questionText.classList.add("show");
+      optionsContainer.classList.add("show");
+    }, 100);
+  }, 150);
 }
 
-// === Check Answer (Fixed One-Time Click) ===
-function checkAnswer(selected, correctAnswer) {
-  //  Block all future clicks right away
+
+function selectAnswer(btn, correct) {
   const buttons = optionsContainer.querySelectorAll(".option");
-  buttons.forEach(btn => {
-    btn.disabled = true; // actual HTML disable (not just class)
-    btn.classList.add("disabled");
-  });
-
-  userAnswers[currentQuestion] = selected.textContent.trim();
-
-  // ✅ Color feedback
-  if (selected.textContent.trim() === correctAnswer) {
-    selected.classList.add("correct");
-  } else {
-    selected.classList.add("wrong");
-    buttons.forEach(btn => {
-      if (btn.textContent.trim() === correctAnswer) btn.classList.add("correct");
+  buttons.forEach(b => b.disabled = true);
+  if (btn.textContent === correct) btn.classList.add("correct");
+  else {
+    btn.classList.add("wrong");
+    buttons.forEach(b => {
+      if (b.textContent === correct) b.classList.add("correct");
     });
   }
+  userAnswers[currentQuestion] = btn.textContent;
 }
 
-// === Navigation Buttons ===
-nextBtn.addEventListener("click", () => {
+nextBtn.onclick = () => {
   if (currentQuestion < quizData.length - 1) {
     currentQuestion++;
-    animateFlyAway();
-    setTimeout(loadQuestion, 900);
+    loadQuestion();
+  } else {
+    showResults();
   }
-});
-
-prevBtn.addEventListener("click", () => {
+};
+prevBtn.onclick = () => {
   if (currentQuestion > 0) {
     currentQuestion--;
-    animateFlyAway();
-    setTimeout(loadQuestion, 900);
+    loadQuestion();
   }
-});
+};
 
-// === Start Quiz ===
-startBtn.addEventListener("click", () => {
+startBtn.onclick = () => {
   introCard.style.display = "none";
   quizWrapper.style.display = "block";
-  animateFlyAway();
   loadQuestion();
-});
+};
 
+function showResults() {
+  let score = 0;
+  quizData.forEach((q, i) => {
+    if (userAnswers[i] === q.answer) score++;
+  });
+  quizWrapper.style.display = "none";
+  resultWrapper.style.display = "block";
+  scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
+  if (score === quizData.length) messageText.textContent = "🎉 Perfect!";
+  else if (score >= quizData.length * 0.6) messageText.textContent = "👏 Good job!";
+  else messageText.textContent = "💪 Try again!";
+}
 
+restartBtn.onclick = () => {
+  resultWrapper.style.display = "none";
+  introCard.style.display = "block";
+  currentQuestion = 0;
+  userAnswers = Array(quizData.length).fill(null);
+};
