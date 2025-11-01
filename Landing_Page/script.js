@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
+            if (href && href.startsWith('#')) {
                 e.preventDefault();
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
@@ -69,4 +69,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    //  Redirect to topic pages (correct paths)
+
+    document.addEventListener("keydown", function(event) {
+        if (event.altKey && event.key.toLowerCase() === "a") {
+            window.location.href = "../topics/archimedes/index.html";
+        }
+        if (event.altKey && event.key.toLowerCase() === "b") {
+            window.location.href = "../topics/bernoullis/index.html";
+        }
+    });
+
+    const archimedesBtn = document.getElementById("archimedesBtn");
+    const bernoulliBtn = document.getElementById("bernoulliBtn");
+
+    if (archimedesBtn) {
+        archimedesBtn.addEventListener("click", () => {
+            window.location.href = "../topics/archimedes/index.html";
+        });
+    }
+
+    if (bernoulliBtn) {
+        bernoulliBtn.addEventListener("click", () => {
+            window.location.href = "../topics/bernoullis/index.html";
+        });
+    }
 });

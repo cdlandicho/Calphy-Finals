@@ -1,6 +1,4 @@
-// =======================================
 // Bernoulli’s Equation Calculator Script
-// =======================================
 function calculateBernoulli() {
   const density = parseFloat(document.getElementById("density").value);
   const velocity = parseFloat(document.getElementById("velocity").value);
@@ -20,9 +18,7 @@ function calculateBernoulli() {
   resultElement.style.color = "#fff";
 }
 
-// ===================================================
-// Interactive Flow Illustration (Animated)
-// ===================================================
+// Interactive Flow Illustration (Animated) need to update the flow (?)
 document.addEventListener("DOMContentLoaded", () => {
   // Auto flow simulation (randomized)
   const flowSpeed = document.getElementById("flowSpeed");
