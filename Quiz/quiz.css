@@ -1,3 +1,4 @@
+/* === Background === */
 body {
   margin: 0;
   height: 100vh;
@@ -38,7 +39,10 @@ body {
   text-decoration: none;
   transition: color 0.3s;
 }
-.navbar-logo:hover { color: #0066cc; }
+
+.navbar-logo:hover {
+  color: #0066cc;
+}
 
 .navbar-links {
   display: flex;
@@ -51,7 +55,10 @@ body {
   font: 500 0.95rem/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   transition: color 0.3s;
 }
-.navbar-links a:hover { color: #0066cc; }
+
+.navbar-links a:hover {
+  color: #0066cc;
+}
 
 /* === Quiz Wrapper (centered) === */
 .quiz-wrapper {
@@ -59,8 +66,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;  /* wider */
-  height: 380px; /* taller */
+  width: 600px;
+  height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,6 +134,7 @@ body {
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 #start-btn:hover {
   background-color: #007BFF;
   color: white;
@@ -146,6 +154,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
 .option {
   background-color: transparent;
   color: #007BFF;
@@ -157,31 +166,37 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .option:hover {
   background-color: #007BFF;
   color: white;
 }
+
 .option.correct {
   background-color: #28a745;
   color: white;
   border-color: #28a745;
 }
+
 .option.wrong {
   background-color: #dc3545;
   color: white;
   border-color: #dc3545;
 }
+
 .option.disabled {
   cursor: not-allowed;
   opacity: 0.8;
 }
 
+/* === Bottom Bar === */
 .bottom-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 12px;
 }
+
 .nav-btn {
   background: transparent;
   color: #007BFF;
@@ -192,12 +207,76 @@ body {
   cursor: pointer;
   transition: 0.3s ease;
 }
+
 .nav-btn:hover {
   background-color: #007BFF;
   color: white;
 }
+
 .progress {
   font-size: 1.1rem;
   font-weight: 600;
   color: #333;
 }
+
+/* === Result Screen === */
+#result-wrapper .quiz-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* === Score Rectangle === */
+.score-card {
+  background: white;
+  border: 3px solid #0A2859;
+  border-radius: 18px;
+  width: 80%;
+  margin: 15px auto 0;
+  padding: 30px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.score-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0A2859;
+  margin-bottom: 8px;
+}
+
+.message-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* === Restart Button === */
+#restart-btn {
+  background-color: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 10px 35px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 20px;
+}
+
+#restart-btn:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
