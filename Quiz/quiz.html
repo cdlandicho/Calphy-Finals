@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="./quiz.css" />
 </head>
 <body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="/index.html" class="navbar-logo">Fluids</a>
+      <div class="navbar-links">
+        <a href="/index.html#about">About</a>
+        <a href="/Developer/developer.html">Developers</a>
+        <a href="/Quiz/quiz.html" class="active">Quiz</a>
+        <a href="#">Leaderboard</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Intro Card -->
   <div class="quiz-wrapper" id="intro-card">
     <div class="layer dark"></div>
@@ -30,7 +44,9 @@
 
       <div class="bottom-bar">
         <button class="nav-btn prev" id="prev-btn">◀ Previous</button>
-        <div class="progress"><span id="current">1</span> / <span id="total">30</span></div>
+        <div class="progress">
+          <span id="current">1</span> / <span id="total">30</span>
+        </div>
         <button class="nav-btn next" id="next-btn">Next ▶</button>
       </div>
     </div>
