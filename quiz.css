@@ -1,19 +1,65 @@
 /* === Blue background with GIF === */
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 80px; /* space for navbar */
   height: 100vh;
-  background: url('asset/CALPH-bg.gif') no-repeat center center fixed;
+  background: url('/asset/CALPH-bg.gif') no-repeat center center fixed;
   background-size: cover;
   display: flex;
+  flex-direction: column; /* add this */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* move items to top */
   font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
+/* Navbar */
+.navbar {
+  position: absolute;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 90%;
+  max-width: 700px;
+}
+
+.navbar-content {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  font: 600 1.1rem/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.navbar-logo:hover { color: #0066cc; }
+
+.navbar-links {
+  display: flex;
+  gap: 24px;
+}
+
+.navbar-links a {
+  color: #1a1a1a;
+  text-decoration: none;
+  font: 500 0.95rem/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: color 0.3s;
+}
+.navbar-links a:hover { color: #0066cc; }
+
+
 /* === Quiz Wrapper === */
 .quiz-wrapper {
+  margin-top: 50px;
   position: relative;
   width: 650px;
   height: 420px;
