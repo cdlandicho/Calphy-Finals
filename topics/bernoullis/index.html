@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bernoulli’s Principle Interactive Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+  <header class="navbar">
+    <div class="logo">Bernoulli’s Flow</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Quiz</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="section">
+      <div class="text">
+        <h2>Understanding Bernoulli’s Equation</h2>
+        <p>
+          Bernoulli's Principle states that an increase in the speed of a fluid causes 
+          a decrease in its pressure or potential energy. This principle, introduced by 
+          Daniel Bernoulli in 1738, explains the relationship between fluid motion and pressure. 
+          One common example is a venturi tube, where, as air moves through the narrowest part of
+          the tube, it speeds up and the pressure drops. In aviation, Bernoulli's Principle is 
+          important for understanding how lift acts on an aircraft wing. Air above a curved top 
+          surface of the wing moves faster than the air beneath the wing, thereby generating lower 
+          pressure above and greater pressure below.
+        </p>
+      </div>
+      <div class="image-box">
+        <img src="../asset-topics/bernoullis diadram.png" alt="Bernoulli Explanation Diagram" />
+      </div>
+    </section>
+
+    <!-- INTERACTIVE FLOW ILLUSTRATION -->
+    <section id="illustration">
+      <h2>Interactive Bernoulli Flow</h2>
+      <p class="subtitle">
+        Adjust the flow speed to observe how pressure changes in the wide and
+        narrow sections of a pipe.
+      </p>
+
+      <div class="illustration-box">
+        <div class="flow-diagram">
+          <img src="../asset-topics/flow_stage1.png" alt="Bernoulli Flow" class="pipe-image" />
+
+          <div class="flow-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pressure-labels">
+        <div class="pressure-label left">P₁</div>
+        <div class="pressure-label right">P₂</div>
+      </div>
+
+      <div class="controls">
+        <label for="speed">Adjust Flow Speed</label>
+        <input type="range" id="speed" min="1" max="5" value="3" step="0.1" />
+      </div>
+
+      <div class="pressure-display">
+        <strong>Pressure Readings:</strong><br />
+        <span>Wide Section (P₁): <span id="p1">120 kPa</span></span><br />
+        <span>Narrow Section (P₂): <span id="p2">90 kPa</span></span>
+      </div>
+    </section>
+
+    <!-- BERNOULLI EQUATION CALCULATOR -->
+    <section class="bernoulli-container">
+      <div class="formula-section">
+        <h2>Bernoulli’s Equation Formula</h2>
+        <h3>P + ½ρv² + ρgh = constant</h3>
+        <p><strong>P</strong> = Pressure (Pa)</p>
+        <p><strong>ρ</strong> = Density (kg/m³)</p>
+        <p><strong>v</strong> = Velocity (m/s)</p>
+        <p><strong>g</strong> = 9.8 m/s²</p>
+        <p><strong>h</strong> = Height (m)</p>
+      </div>
+
+      <div class="calculator">
+        <h3>Bernoulli’s Equation Calculator</h3>
+        <label for="density">Fluid Density (kg/m³)</label>
+        <input type="number" id="density" placeholder="Enter density" />
+
+        <label for="velocity">Velocity (m/s)</label>
+        <input type="number" id="velocity" placeholder="Enter velocity" />
+
+        <label for="height">Height (m)</label>
+        <input type="number" id="height" placeholder="Enter height" />
+
+        <label for="pressure">Pressure (Pa)</label>
+        <input type="number" id="pressure" placeholder="Enter pressure" />
+
+        <button onclick="calculateBernoulli()">Calculate</button>
+        <div id="result"></div>
+      </div>
+    </section>
+  </main>
+    <script src="script.js"></script>
+</body>
+</html>

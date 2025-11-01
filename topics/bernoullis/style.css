@@ -1,0 +1,346 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("../asset-topics/CALPH-bg.gif") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.navbar .logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.navbar nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar nav a.sign-in {
+  border: 1px solid white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.navbar nav a.sign-in:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* MAIN CONTENT SECTIONS */
+main {
+  margin-top: 140px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  width: 80%;
+  margin: 40px auto;
+  padding: 60px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.section:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.section .text {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify; 
+}
+
+.image-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image-box img {
+  width: 90%;
+  max-width: 380px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* INTERACTIVE ILLUSTRATION */
+#illustration {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+}
+
+#illustration h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#illustration .subtitle {
+  margin-bottom: 30px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.illustration-box {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  margin: 0 auto 20px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* FLOW IMAGE AND DOTS */
+.flow-diagram {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 950px;
+  height: 400px; /* bigger pipe */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.pipe-image {
+  width: 150%;        
+  max-width: none;
+  height: 200%;
+  object-fit: contain; 
+  filter: brightness(1.05);
+}
+
+.flow-dots {
+  position: absolute;
+  top: 50%;            
+  transform: translateY(-50%);
+  display: flex;
+  gap: 25px;
+  animation: moveDots 3s linear infinite;
+}
+
+.flow-dots span {
+  width: 14px;        
+  height: 14px;
+  background: radial-gradient(circle, #00d9ff 0%, #0099ff 70%);
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+@keyframes moveDots {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(115%); }
+}
+
+.pressure-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  max-width: 850px;
+  margin: 10px auto 0;
+  padding: 0 10px;
+}
+
+.pressure-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.controls {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.controls label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.controls input[type="range"] {
+  width: 60%;
+  height: 8px;
+  border-radius: 5px;
+  appearance: none;
+  background: linear-gradient(to right, #007bff, #66b2ff);
+  outline: none;
+  cursor: pointer;
+}
+
+.pressure-display {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 15px 25px;
+  display: inline-block;
+  font-size: 1rem;
+  margin-top: 25px;
+  line-height: 1.6;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.pressure-display strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+
+/* CALCULATOR STYLES */
+   
+.bernoulli-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 85%;
+  margin: 100px auto;
+  padding: 50px 70px; 
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  gap: 70px; 
+}
+
+.formula-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  text-align: left;
+  padding-left: 10px; 
+}
+
+.formula-section h2 {
+  font-size: 2.3rem; 
+  font-weight: 700;
+  margin-bottom: 15px; 
+}
+
+.formula-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 90%;
+}
+
+.calculator {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.calculator h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.calculator input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.calculator button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #007bff, #5aa9f8);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.calculator button:hover {
+  background: linear-gradient(90deg, #5aa9f8, #7bc3ff);
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .section,
+  .bernoulli-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .image-box img {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+
+  .pressure-label {
+    font-size: 1.1rem;
+  }
+
+  .calculator {
+    width: 100%;
+    margin: 20px auto;
+  }
+}
