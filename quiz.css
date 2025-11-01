@@ -1,22 +1,20 @@
 /* === Blue background with GIF === */
 body {
   margin: 0;
-  padding-top: 80px; /* space for navbar */
   height: 100vh;
   background: url('/asset/CALPH-bg.gif') no-repeat center center fixed;
   background-size: cover;
   display: flex;
-  flex-direction: column; /* add this */
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* move items to top */
   font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
-/* Navbar */
+/* === Navbar === */
 .navbar {
   position: absolute;
-  top: 20px; 
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -56,19 +54,23 @@ body {
 }
 .navbar-links a:hover { color: #0066cc; }
 
-
-/* === Quiz Wrapper === */
+/* === Quiz Wrapper (centered) === */
 .quiz-wrapper {
-  margin-top: 50px;
-  position: relative;
-  width: 650px;
-  height: 420px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;  /* wider */
+  height: 380px; /* taller */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* === Blue tilted layers === */
 .layer {
   position: absolute;
-  border-radius: 18px;
+  border-radius: 22px;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -78,15 +80,15 @@ body {
 .layer.dark {
   background-color: #0A2859;
   transform: rotate(-6deg);
-  top: 30px;
-  left: -25px;
+  top: 25px;
+  left: -15px;
 }
 
 .layer.light {
   background-color: #007BFF;
   transform: rotate(4deg);
-  top: -15px;
-  left: 20px;
+  top: -10px;
+  left: 15px;
 }
 
 /* === White container === */
@@ -95,10 +97,10 @@ body {
   z-index: 3;
   background-color: #fff;
   border-radius: 18px;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  padding: 35px 40px;
+  width: 94%;
+  height: 94%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 25px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -108,10 +110,10 @@ body {
 
 /* === Intro Text === */
 .intro-text {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #0A2859;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 /* === Start Button === */
@@ -119,14 +121,13 @@ body {
   background-color: transparent;
   color: #007BFF;
   border: 2px solid #007BFF;
-  padding: 12px 40px;
+  padding: 10px 35px;
   border-radius: 50px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
 }
-
 #start-btn:hover {
   background-color: #007BFF;
   color: white;
@@ -134,49 +135,43 @@ body {
 
 /* === Question === */
 .question {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 /* === Options === */
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 12px;
 }
-
 .option {
   background-color: transparent;
   color: #007BFF;
   border: 2px solid #007BFF;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  padding: 12px 0;
+  padding: 10px 0;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .option:hover {
   background-color: #007BFF;
   color: white;
 }
-
-/* === Correct/Wrong === */
 .option.correct {
   background-color: #28a745;
   color: white;
   border-color: #28a745;
 }
-
 .option.wrong {
   background-color: #dc3545;
   color: white;
   border-color: #dc3545;
 }
-
 .option.disabled {
   cursor: not-allowed;
   opacity: 0.8;
@@ -187,27 +182,24 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 12px;
 }
-
 .nav-btn {
   background: transparent;
   color: #007BFF;
   border: 2px solid #007BFF;
-  padding: 6px 18px;
+  padding: 5px 16px;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
 }
-
 .nav-btn:hover {
   background-color: #007BFF;
   color: white;
 }
-
 .progress {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #333;
 }
