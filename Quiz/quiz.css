@@ -140,6 +140,42 @@ body {
   color: white;
 }
 
+/* === Username Input Box === */
+#username-input {
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: 2px solid #007BFF;
+  font-size: 1.05rem;
+  text-align: center;
+  width: 70%;
+  transition: all 0.3s ease;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+#username-input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+}
+
+/* === Continue Button (after username) === */
+#continue-btn {
+  background-color: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 10px 35px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#continue-btn:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
 /* === Question === */
 .question {
   font-size: 1.1rem;
@@ -279,4 +315,3 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-

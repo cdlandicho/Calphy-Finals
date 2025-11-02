@@ -21,11 +21,21 @@
     </div>
   </nav>
 
-  <!-- Intro Card -->
-  <div class="quiz-wrapper" id="intro-card">
+  <!-- Username Card -->
+  <div class="quiz-wrapper" id="username-card">
     <div class="layer dark"></div>
     <div class="layer light"></div>
+    <div class="quiz-container">
+      <h1 class="intro-text">Enter Username</h1>
+      <input type="text" id="username-input" placeholder="Type username here" style="padding: 10px 15px; border-radius: 12px; border: 2px solid #007BFF; font-size: 1rem; margin-bottom: 20px; width: 70%; text-align: center;" />
+      <button id="continue-btn">Continue</button>
+    </div>
+  </div>
 
+  <!-- Intro Card -->
+  <div class="quiz-wrapper" id="intro-card" style="display: none;">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
     <div class="quiz-container">
       <h1 class="intro-text">Time to test your knowledge!</h1>
       <button id="start-btn">Start</button>
@@ -36,12 +46,9 @@
   <div class="quiz-wrapper" id="quiz-wrapper" style="display: none;">
     <div class="layer dark"></div>
     <div class="layer light"></div>
-
     <div class="quiz-container">
       <h2 class="question" id="question-text"></h2>
-
       <div class="options" id="options-container"></div>
-
       <div class="bottom-bar">
         <button class="nav-btn prev" id="prev-btn">◀ Previous</button>
         <div class="progress">
@@ -56,16 +63,12 @@
   <div class="quiz-wrapper" id="result-wrapper" style="display: none;">
     <div class="layer dark"></div>
     <div class="layer light"></div>
-
     <div class="quiz-container">
       <h1 class="intro-text">Quiz Finished!</h1>
-
-      <!-- Rectangle card for score -->
       <div class="score-card">
         <p id="score-text" class="score-text">Your Score: 0 / 0</p>
         <p id="message-text" class="message-text"></p>
       </div>
-
       <button id="restart-btn" class="nav-btn" style="margin-top:20px;">Restart Quiz</button>
     </div>
   </div>
