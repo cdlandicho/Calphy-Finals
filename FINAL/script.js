@@ -30,14 +30,19 @@ scrollBtn.addEventListener('click', () => smoothScroll(aboutSection, 2000));
 // Navbar links
 const navLinks = document.querySelectorAll('nav a');
 navLinks.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href').substring(1);
-    const target = document.getElementById(targetId);
-    if (target) smoothScroll(target, 1500);
-  });
-});
+  const href = link.getAttribute('href');
 
+  // If it's an in-page anchor (starts with '#'), intercept and smooth-scroll
+  if (href && href.startsWith('#')) {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = href.slice(1);
+      const target = document.getElementById(targetId);
+      if (target) smoothScroll(target, 1500);
+    });
+  }
+  // If it's NOT a hash (external/relative page), do nothing and allow normal navigation
+});
 
 // -------------------- AUTOMATIC SMOOTH CAROUSEL LOGIC --------------------
 
