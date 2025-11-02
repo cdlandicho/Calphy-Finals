@@ -142,20 +142,23 @@ body {
 
 /* === Username Input Box === */
 #username-input {
+  width: 75%;
   padding: 12px 20px;
   border-radius: 50px;
   border: 2px solid #007BFF;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   text-align: center;
-  width: 70%;
-  transition: all 0.3s ease;
+  margin-bottom: 18px;
   outline: none;
-  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.3s ease;
 }
 
 #username-input:focus {
   border-color: #28a745;
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.45);
 }
 
 /* === Continue Button === */
@@ -286,24 +289,25 @@ body {
   color: #333;
 }
 
-/* === Restart Button === */
+/* === Restart Button (match size of Review Quiz) === */
 #restart-btn {
   background-color: transparent;
   color: #007BFF;
   border: 2px solid #007BFF;
-  padding: 10px 35px;
+  padding: 10px 30px;   /* SAME padding as Review button */
   border-radius: 50px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s ease;
-  margin-top: 20px;
+  white-space: nowrap;
 }
 
 #restart-btn:hover {
   background-color: #007BFF;
   color: white;
 }
+
 
 /* === Animations === */
 .fade {
@@ -340,4 +344,84 @@ body {
 .fade.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.review-container {
+  justify-content: flex-start;
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+#review-content {
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(0, 123, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 2px solid #007BFF;
+  overflow-y: scroll;
+}
+
+.review-item {
+  text-align: left;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.review-item p {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.correct-text {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.wrong-text {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;       /* spacing between buttons */
+  margin-top: 5px; /* moves buttons slightly upward */
+}
+
+.result-buttons .nav-btn {
+  background: transparent;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  padding: 10px 30px;           /* equal size buttons */
+  border-radius: 50px;
+  font-size: 1rem;              /* same font size */
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;          /* prevents text breaking line */
+}
+
+.result-buttons .nav-btn:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* --- Fix misalignment of Review & Restart buttons --- */
+#restart-btn {
+  width: auto !important;      /* removes 50% width */
+  margin: 0 !important;        /* removes auto-centering + pushes up */
+  display: inline-flex !important; /* lets it align inline */
+}
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;   /* keeps spacing clean */
 }
