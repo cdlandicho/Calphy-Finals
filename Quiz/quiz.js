@@ -1,4 +1,8 @@
 // === ELEMENTS ===
+const usernameCard = document.getElementById("username-card");
+const usernameInput = document.getElementById("username-input");
+const continueBtn = document.getElementById("continue-btn");
+
 const introCard = document.getElementById('intro-card');
 const quizWrapper = document.getElementById('quiz-wrapper');
 const resultWrapper = document.getElementById('result-wrapper');
@@ -8,45 +12,26 @@ const nextBtn = document.getElementById('next-btn');
 const prevBtn = document.getElementById('prev-btn');
 const scoreText = document.getElementById('score-text');
 const messageText = document.getElementById('message-text');
-const restartBtn = document.getElementById('restart-btn');
 const startBtn = document.getElementById('start-btn');
+const reviewWrapper = document.getElementById('review-wrapper');
+const reviewContent = document.getElementById('review-content');
+const reviewBtn = document.getElementById('review-btn');
+const backToResultBtn = document.getElementById('back-to-result-btn');
+const restartBtn = document.getElementById('restart-btn'); // ✅ Restart button
 
-// === USERNAME ELEMENTS ===
+// === USERNAME ===
 let username = "";
-let usernameCard;
+continueBtn.onclick = () => {
+  const name = usernameInput.value.trim();
+  if (name === "") {
+    alert("Please enter your username first!");
+    return;
+  }
+  username = name;
+  usernameCard.style.display = "none";
+  introCard.style.display = "flex";
+};
 
-// Create username input dynamically
-window.addEventListener("DOMContentLoaded", () => {
-  usernameCard = document.createElement("div");
-  usernameCard.className = "quiz-wrapper";
-  usernameCard.id = "username-card";
-  usernameCard.innerHTML = `
-    <div class="layer dark"></div>
-    <div class="layer light"></div>
-    <div class="quiz-container">
-      <div class="username-box">
-        <label class="username-label">Enter your username</label>
-        <input type="text" id="username-input" placeholder="Your name" />
-      </div>
-      <button id="continue-btn" class="nav-btn">Continue</button>
-    </div>
-  `;
-  document.body.appendChild(usernameCard);
-
-  const continueBtn = usernameCard.querySelector("#continue-btn");
-  const usernameInput = usernameCard.querySelector("#username-input");
-
-  continueBtn.onclick = () => {
-    const name = usernameInput.value.trim();
-    if (name === "") {
-      alert("Please enter your username first!");
-      return;
-    }
-    username = name;
-    usernameCard.style.display = "none";
-    introCard.style.display = "flex";
-  };
-});
 // === Questions ===
 const quizData = [
   {
@@ -233,15 +218,12 @@ function showQuestion() {
     // Check if this option was previously selected
     if (userAnswers[currentQuestion] !== null) {
       btn.classList.add("disabled");
-      if (optionText === quizData[currentQuestion].answer) btn.classList.add("correct");
-      if (optionText === userAnswers[currentQuestion]) {
-        if (userAnswers[currentQuestion] === quizData[currentQuestion].answer)
-          btn.classList.add("correct");
-        else btn.classList.add("wrong");
-      }
+      if (optionText === q.answer) btn.classList.add("correct");
+      if (optionText === userAnswers[currentQuestion] && userAnswers[currentQuestion] !== q.answer)
+        btn.classList.add("wrong");
     }
 
-    btn.onclick = () => handleAnswer(optionText, btn);
+    btn.onclick = () => handleAnswer(optionText);
     optionsContainer.appendChild(btn);
   });
 
@@ -250,24 +232,24 @@ function showQuestion() {
 }
 
 // === HANDLE ANSWER ===
-function handleAnswer(selectedOption, btn) {
+function handleAnswer(selectedOption) {
   if (userAnswers[currentQuestion] !== null) return;
   userAnswers[currentQuestion] = selectedOption;
+
   const correctAnswer = quizData[currentQuestion].answer;
   const optionButtons = optionsContainer.querySelectorAll(".option");
 
-  optionButtons.forEach((button) => {
-    button.classList.add("disabled");
-    if (button.textContent === correctAnswer) button.classList.add("correct");
-    else if (button.textContent === selectedOption && selectedOption !== correctAnswer)
-      button.classList.add("wrong");
-    
+  optionButtons.forEach(btn => {
+    btn.classList.add("disabled");
+    if (btn.textContent === correctAnswer) btn.classList.add("correct");
+    else if (btn.textContent === selectedOption && selectedOption !== correctAnswer)
+      btn.classList.add("wrong");
   });
 
   if (selectedOption === correctAnswer) score++;
 }
 
-// === NEXT BUTTON ===
+// === NAVIGATION ===
 nextBtn.onclick = () => {
   if (currentQuestion < quizData.length - 1) {
     currentQuestion++;
@@ -285,23 +267,54 @@ prevBtn.onclick = () => {
   }
 };
 
+document.getElementById("restart-btn").onclick = () => {
+  localStorage.removeItem("quizTaken");
+  location.reload();
+};
+
 // === SHOW RESULTS ===
 function showResults() {
   quizWrapper.style.display = "none";
   resultWrapper.style.display = "flex";
+
   scoreText.textContent = `${username}, your score is: ${score} / ${quizData.length}`;
-  if (score === quizData.length)
-    messageText.textContent = "Excellent! Perfect score!";
-  else if (score >= quizData.length / 2)
-    messageText.textContent = "Good job! You passed!";
+  if (score === quizData.length) messageText.textContent = "Excellent! Perfect score!";
+  else if (score >= quizData.length / 2) messageText.textContent = "Good job! You passed!";
   else messageText.textContent = "Keep practicing!";
 }
 
-// === RESTART QUIZ ===
-restartBtn.onclick = () => {
+// === REVIEW ANSWERS ===
+reviewBtn.onclick = () => {
   resultWrapper.style.display = "none";
-  introCard.style.display = "flex";
+  reviewWrapper.style.display = "flex";
+  reviewContent.innerHTML = "";
+
+  quizData.forEach((q, index) => {
+    const userAns = userAnswers[index];
+    const isCorrect = userAns === q.answer;
+    reviewContent.innerHTML += `
+      <div class="review-item">
+        <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+        <p>Your Answer: <span class="${isCorrect ? 'correct-text' : 'wrong-text'}">${userAns || "No Answer"}</span></p>
+        <p>Correct Answer: <span class="correct-text">${q.answer}</span></p>
+      </div>
+    `;
+  });
+};
+
+backToResultBtn.onclick = () => {
+  reviewWrapper.style.display = "none";
+  resultWrapper.style.display = "flex";
+};
+
+// ✅ RESTART QUIZ (KEEP USERNAME)
+restartBtn.onclick = () => {
   score = 0;
   currentQuestion = 0;
   userAnswers = Array(quizData.length).fill(null);
+
+  resultWrapper.style.display = "none";
+  quizWrapper.style.display = "flex";
+
+  showQuestion();
 };
