@@ -308,7 +308,6 @@ body {
   color: white;
 }
 
-
 /* === Animations === */
 .fade {
   opacity: 0;
@@ -425,3 +424,47 @@ body {
   align-items: center;
   gap: 18px;   /* keeps spacing clean */
 }
+
+/* === Blue Layer Split Animation === */
+.layer {
+  animation: layerSplit 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes layerSplit {
+  0%, 100% {
+    transform: translate(0,0) rotate(var(--rotate));
+  }
+  50% {
+    transform: translate(var(--move-x), var(--move-y)) rotate(var(--rotate));
+  }
+}
+
+/* Custom movement for each layer */
+.layer.dark {
+  --rotate: -6deg;
+  --move-x: -30px;
+  --move-y: 15px;
+}
+
+.layer.light {
+  --rotate: 4deg;
+  --move-x: 30px;
+  --move-y: -15px;
+}
+
+/* Style the Enter Username text (placeholder) */
+#username-input::placeholder {
+  color: #0A2859;      /* deep blue color */
+  font-weight: 600;    /* thicker font */
+  opacity: 1;          /* ensures visible */
+}
+
+/* Style the actual text typed by the user */
+#username-input {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0c1f4e;       /* matches theme */
+  margin-top: 10px;    /* moves input slightly upward */
+}
+
