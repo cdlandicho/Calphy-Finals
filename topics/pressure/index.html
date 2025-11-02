@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fluids — Fluid Pressure</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">Fluids</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- FIRST SECTION: Fluid Pressure -->
+    <section id="about" class="section first-section">
+      <div class="text">
+        <h2>Fluid Pressure</h2>
+        <p>
+          Hydrostatic pressure is the pressure applied when the fluid at rest is a result of gravity.
+          It is caused by the mass of the fluid pushing onto a particular point in the fluid and grows
+          roughly with depth beneath the surface. As depth gets deeper, the underlying fluid produces
+          an increased downward force, causing an upward increase in tension at the bottom.
+        </p>
+      </div>
+
+      <div class="image-box">
+        <img src="../asset-topics/fluids-pressure.png" alt="Fluid container illustration" />
+      </div>
+    </section>
+
+    <!-- SECOND SECTION: Interactive Illustration -->
+    <section id="illustration" class="section interactive-section" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 3rem; text-align: left;">
+      <div class="illustration-text" style="flex: 1; min-width: 320px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="text-align: justify;">
+          <h2 style="text-align: justify;">Interactive Illustration</h2>
+          <p class="subtitle" style="text-align: justify;">When you move the slider, the water volume increases or decreases. As the volume changes, 
+            the pressure at the top, middle, and bottom of the container also varies accordingly. A larger volume results 
+            in greater depth and higher pressure at the lower points, while a smaller volume reduces the pressure throughout the fluid.</p>
+        </div>
+
+        <div class="controls" style="margin-top: 2rem; text-align: center;">
+          <label for="waterRange" style="display: block; font-weight: 600;">Water Volume</label>
+          <input id="waterRange" type="range" min="10" max="100" value="50" style="width: 80%; margin-top: 0.5rem;" />
+          <div class="pressure-display" id="pressureDisplay" style="margin-top: 0.8rem;">Water level: 50%</div>
+        </div>
+      </div>
+
+      <div class="flow-diagram" style="flex: 1; display: flex; justify-content: center;">
+        <img class="pipe-image" src="../asset-topics/interactive-illus.png" alt="Interactive tank" />
+      </div>
+    </section>
+
+    <!-- THIRD SECTION: Formula & Calculator -->
+    <section id="calculator" class="section formula-section">
+      <div class="formula-text">
+        <h2>Formula</h2>
+        <p><strong>P = ρ × g × h</strong></p>
+        <p>Where:</p>
+        <p>ρ = density<br>g = acceleration due to gravity (9.8 m/s²)<br>h = height</p>
+      </div>
+
+      <div class="calculator glass-box">
+        <h3>Calculator</h3>
+
+        <label for="height">Height (m):</label>
+        <input id="height" type="number" placeholder="Enter height in meters" />
+
+        <label for="density">Density (kg/m³):</label>
+        <input id="density" type="number" placeholder="Enter fluid density" />
+
+        <label for="gravity">Gravity (m/s²):</label>
+        <input id="gravity" type="number" value="9.8" placeholder="Enter gravity" />
+
+        <button id="calcBtn">Result</button>
+        <div id="result"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const waterRange = document.getElementById('waterRange');
+    const pressureDisplay = document.getElementById('pressureDisplay');
+
+    if (waterRange) {
+      waterRange.addEventListener('input', () => {
+        pressureDisplay.textContent = `Water level: ${waterRange.value}%`;
+      });
+    }
+
+    // calculator
+    document.getElementById('calcBtn')?.addEventListener('click', () => {
+      const h = parseFloat(document.getElementById('height').value);
+      const rho = parseFloat(document.getElementById('density').value);
+      const g = parseFloat(document.getElementById('gravity').value);
+
+      const out = document.getElementById('result');
+      if (isNaN(h) || isNaN(rho) || isNaN(g)) {
+        out.textContent = 'Please fill all fields.';
+        return;
+      }
+      const P = rho * g * h;
+      out.textContent = `Pressure: ${P.toFixed(2)} Pa`;
+    });
+  </script>
+</body>
+</html>
