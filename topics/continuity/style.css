@@ -1,0 +1,384 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("../asset-topics/CALPH-bg.gif") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* NAVBAR  */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  padding: 18px 100px;
+  width: 80%;
+  max-width: 1200px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ffd700;
+}
+
+/* Sign In Button */
+.navbar ul li:last-child a {
+  border: 1.8px solid #ffffff;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.navbar ul li:last-child a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  color: #ffd700;
+}
+
+/* SECTION SPACING */
+.section-one,
+.section-two,
+.section-three {
+  margin-top: 160px;
+}
+
+/* SECTION BOX STYLE */
+.section-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 60px 60px;
+  width: 85%;
+  max-width: 1200px;
+  margin: 0px auto 0px auto;
+  transition: all 0.3s ease;
+}
+
+.section-box:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+}
+
+/* SECTION 1: INTRODUCTION */
+.section-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.section-one .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.section-one .text {
+  flex: 1 1 500px;
+  max-width: 600px;
+}
+
+.section-one .text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.section-one .text p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  text-align: justify;
+  color: #f2f2f2;
+}
+
+.section-one .image {
+  flex: 1 1 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.section-one .image img {
+  width: 420px;
+  max-width: 100%;
+  border-radius: 25px;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* SECTION 2: FORMULA */
+.section-two {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.section-two h2 {
+  font-size: 2.6rem;
+  margin-bottom: 35px;
+  font-weight: 600;
+}
+
+.formula-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 40px;
+  display: inline-block;
+  width: 65%;
+  max-width: 700px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.formula-box h3 {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.formula-box p {
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* SECTION 3: INTERACTIVE ILLUSTRATION */
+.section-three {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.section-three h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.pipe-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+  padding: 50px;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.pipe-image {
+  width: 500px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-group input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  width: 180px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.result input {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-weight: bold;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-container label {
+  font-weight: 500;
+}
+
+.slider-container input[type="range"] {
+  width: 300px;
+  accent-color: #2b44d1;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 30px;
+  }
+
+  .navbar ul {
+    gap: 25px;
+  }
+
+  .section-one .content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section-one .text h1 {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+
+  .section-one .image img {
+    width: 350px;
+  }
+
+  .formula-box {
+    width: 85%;
+  }
+
+  .section-box {
+    padding: 35px 25px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-one {
+    padding: 60px 20px;
+  }
+
+  .section-one .text h1 {
+    font-size: 2rem;
+  }
+
+  .section-one .text p {
+    font-size: 0.95rem;
+  }
+
+  .pipe-image {
+    width: 350px;
+  }
+
+  .inputs {
+    flex-direction: column;
+  }
+
+  .input-group input {
+    width: 160px;
+  }
+
+  .formula-box {
+    padding: 25px;
+  }
+
+  .section-box {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    width: 90%;
+    padding: 15px 25px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-one .text h1 {
+    font-size: 1.6rem;
+  }
+
+  .section-one .text p {
+    font-size: 0.9rem;
+  }
+
+  .section-one .image img {
+    width: 250px;
+  }
+
+  .formula-box {
+    width: 95%;
+  }
+
+  .pipe-image {
+    width: 250px;
+  }
+
+  .slider-container input[type="range"] {
+    width: 200px;
+  }
+
+  .section-box {
+    padding: 25px 15px;
+    width: 95%;
+  }
+}
