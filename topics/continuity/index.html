@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Continuity Principle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h2 class="logo">Fluids</h2>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Quiz</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECTION 1: INTRO -->
+  <section class="section-one">
+    <div class="section-box">
+      <div class="content">
+        <div class="text">
+          <h1>Continuity Principle</h1>
+          <p>
+            The Continuity Principle states that for an incompressible fluid flowing in a pipe,
+            the amount of fluid entering one end will be equal to the amount flowing out of the
+            other end in any given amount of time, which preserves mass.
+            The fluid's density is constant, and since a pipe is always full, the mass flow rate
+            is constant in every segment of the pipe.
+          </p>
+        </div>
+        <div class="image">
+          <img src="../asset-topics/continuity.png" alt="Continuity Equation Diagram" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FORMULA -->
+  <section class="section-two">
+    <div class="section-box">
+      <h2>Formula</h2>
+      <div class="formula-box">
+        <h3>A₁V₁ = A₂V₂</h3>
+        <p>
+          A₁ = cross-sectional area of the first section<br>
+          V₁ = velocity of the fluid at the first section<br>
+          A₂ = cross-sectional area of the second section<br>
+          V₂ = velocity of the fluid at the second section
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTERACTIVE ILLUSTRATION -->
+  <section class="section-three">
+    <div class="section-box">
+      <h2>Interactive Illustration</h2>
+
+      <div class="pipe-container">
+        <img src="../asset-topics/pipe-continuity.png" alt="Pipe Illustration" class="pipe-image" />
+      </div>
+
+      <div class="inputs">
+        <div class="input-group">
+          <label>Area 1</label>
+          <input type="number" id="area1" placeholder="Enter A₁" />
+        </div>
+        <div class="input-group">
+          <label>Velocity 1</label>
+          <input type="number" id="velocity1" placeholder="Enter V₁" />
+        </div>
+        <div class="input-group result">
+          <label>Velocity 2</label>
+          <input type="text" id="velocity2" readonly value="20.0 m/s" />
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="area2">Area 2</label>
+        <input type="range" id="area2" min="1" max="10" step="0.1" value="5" />
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
