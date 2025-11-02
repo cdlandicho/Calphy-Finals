@@ -1,4 +1,4 @@
-const startBtn = document.getElementById('start-btn');
+// === ELEMENTS ===
 const introCard = document.getElementById('intro-card');
 const quizWrapper = document.getElementById('quiz-wrapper');
 const resultWrapper = document.getElementById('result-wrapper');
@@ -6,12 +6,47 @@ const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const nextBtn = document.getElementById('next-btn');
 const prevBtn = document.getElementById('prev-btn');
-const currentSpan = document.getElementById('current');
-const totalSpan = document.getElementById('total');
 const scoreText = document.getElementById('score-text');
 const messageText = document.getElementById('message-text');
 const restartBtn = document.getElementById('restart-btn');
+const startBtn = document.getElementById('start-btn');
 
+// === USERNAME ELEMENTS ===
+let username = "";
+let usernameCard;
+
+// Create username input dynamically
+window.addEventListener("DOMContentLoaded", () => {
+  usernameCard = document.createElement("div");
+  usernameCard.className = "quiz-wrapper";
+  usernameCard.id = "username-card";
+  usernameCard.innerHTML = `
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
+    <div class="quiz-container">
+      <div class="username-box">
+        <label class="username-label">Enter your username</label>
+        <input type="text" id="username-input" placeholder="Your name" />
+      </div>
+      <button id="continue-btn" class="nav-btn">Continue</button>
+    </div>
+  `;
+  document.body.appendChild(usernameCard);
+
+  const continueBtn = usernameCard.querySelector("#continue-btn");
+  const usernameInput = usernameCard.querySelector("#username-input");
+
+  continueBtn.onclick = () => {
+    const name = usernameInput.value.trim();
+    if (name === "") {
+      alert("Please enter your username first!");
+      return;
+    }
+    username = name;
+    usernameCard.style.display = "none";
+    introCard.style.display = "flex";
+  };
+});
 // === Questions ===
 const quizData = [
   {
@@ -163,7 +198,7 @@ const quizData = [
   {
     question: "Water flows through a horizontal pipe that narrows from a diameter of 10 cm to 5 cm. If the speed of water in the wider section is 2 m/s, find the speed in the narrower section.",
     options: ["4 m/s", "8 m/s", "6 m.s", "10 m/s"],
-    answer: "Direction"
+    answer: "8 m/s"
   },
   {
     question: "A force of 200 N is applied on an area of 0.5 m². Find the pressure.",
@@ -172,96 +207,111 @@ const quizData = [
   },
 ];
 
-// === Setup ===
+// === VARIABLES ===
 let currentQuestion = 0;
+let score = 0;
 let userAnswers = Array(quizData.length).fill(null);
-totalSpan.textContent = quizData.length;
 
-function loadQuestion() {
+// === START QUIZ ===
+startBtn.onclick = () => {
+  introCard.style.display = "none";
+  quizWrapper.style.display = "flex";
+  showQuestion();
+};
+
+// === SHOW QUESTION ===
+function showQuestion() {
   const q = quizData[currentQuestion];
+  questionText.textContent = q.question;
+  optionsContainer.innerHTML = "";
 
-  // Remove fade classes first (reset state)
-  questionText.classList.remove("show");
-  optionsContainer.classList.remove("show");
+  q.options.forEach((optionText) => {
+    const btn = document.createElement("button");
+    btn.classList.add("option");
+    btn.textContent = optionText;
 
-  // Apply base fade class
-  questionText.classList.add("fade");
-  optionsContainer.classList.add("fade");
+    // Check if this option was previously selected
+    if (userAnswers[currentQuestion] !== null) {
+      btn.classList.add("disabled");
 
-  // Wait a bit before updating text to make transition smooth
-  setTimeout(() => {
-    questionText.textContent = q.question;
-    optionsContainer.innerHTML = "";
+      if (optionText === quizData[currentQuestion].answer) {
+        btn.classList.add("correct");
+      }
 
-    q.options.forEach(opt => {
-      const btn = document.createElement("button");
-      btn.classList.add("option");
-      btn.textContent = opt;
-      btn.onclick = () => selectAnswer(btn, q.answer);
-      optionsContainer.appendChild(btn);
-    });
+      if (optionText === userAnswers[currentQuestion]) {
+        if (userAnswers[currentQuestion] === quizData[currentQuestion].answer) {
+          btn.classList.add("correct");
+        } else {
+          btn.classList.add("wrong");
+        }
+      }
+    }
 
-    currentSpan.textContent = currentQuestion + 1;
+    btn.onclick = () => handleAnswer(optionText, btn);
+    optionsContainer.appendChild(btn);
+  });
 
-    // Trigger fade-in
-    setTimeout(() => {
-      questionText.classList.add("show");
-      optionsContainer.classList.add("show");
-    }, 100);
-  }, 150);
+  document.getElementById("current").textContent = currentQuestion + 1;
+  document.getElementById("total").textContent = quizData.length;
 }
 
+// === HANDLE ANSWER ===
+function handleAnswer(selectedOption, btn) {
+  if (userAnswers[currentQuestion] !== null) return; // prevent multiple answers
 
-function selectAnswer(btn, correct) {
-  const buttons = optionsContainer.querySelectorAll(".option");
-  buttons.forEach(b => b.disabled = true);
-  if (btn.textContent === correct) btn.classList.add("correct");
-  else {
-    btn.classList.add("wrong");
-    buttons.forEach(b => {
-      if (b.textContent === correct) b.classList.add("correct");
-    });
-  }
-  userAnswers[currentQuestion] = btn.textContent;
+  userAnswers[currentQuestion] = selectedOption;
+  const correctAnswer = quizData[currentQuestion].answer;
+  const optionButtons = optionsContainer.querySelectorAll(".option");
+
+  optionButtons.forEach((button) => {
+    button.classList.add("disabled");
+    if (button.textContent === correctAnswer) {
+      button.classList.add("correct");
+    } else if (button.textContent === selectedOption && selectedOption !== correctAnswer) {
+      button.classList.add("wrong");
+    }
+  });
+
+  if (selectedOption === correctAnswer) score++;
 }
 
+// === NEXT BUTTON ===
 nextBtn.onclick = () => {
   if (currentQuestion < quizData.length - 1) {
     currentQuestion++;
-    loadQuestion();
+    showQuestion();
   } else {
     showResults();
   }
 };
+
+// === PREVIOUS BUTTON ===
 prevBtn.onclick = () => {
   if (currentQuestion > 0) {
     currentQuestion--;
-    loadQuestion();
+    showQuestion();
   }
 };
 
-startBtn.onclick = () => {
-  introCard.style.display = "none";
-  quizWrapper.style.display = "block";
-  loadQuestion();
-};
-
+// === SHOW RESULTS ===
 function showResults() {
-  let score = 0;
-  quizData.forEach((q, i) => {
-    if (userAnswers[i] === q.answer) score++;
-  });
   quizWrapper.style.display = "none";
-  resultWrapper.style.display = "block";
-  scoreText.textContent = `Your Score: ${score} / ${quizData.length}`;
-  if (score === quizData.length) messageText.textContent = "🎉 Perfect!";
-  else if (score >= quizData.length * 0.6) messageText.textContent = "👏 Good job!";
-  else messageText.textContent = "💪 Try again!";
+  resultWrapper.style.display = "flex";
+  scoreText.textContent = `${username}, your score is: ${score} / ${quizData.length}`;
+  if (score === quizData.length) {
+    messageText.textContent = "Excellent! Perfect score!";
+  } else if (score >= quizData.length / 2) {
+    messageText.textContent = "Good job! You passed!";
+  } else {
+    messageText.textContent = "Keep practicing!";
+  }
 }
 
+// === RESTART QUIZ ===
 restartBtn.onclick = () => {
   resultWrapper.style.display = "none";
-  introCard.style.display = "block";
+  introCard.style.display = "flex";
+  score = 0;
   currentQuestion = 0;
   userAnswers = Array(quizData.length).fill(null);
 };
