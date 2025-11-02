@@ -233,17 +233,11 @@ function showQuestion() {
     // Check if this option was previously selected
     if (userAnswers[currentQuestion] !== null) {
       btn.classList.add("disabled");
-
-      if (optionText === quizData[currentQuestion].answer) {
-        btn.classList.add("correct");
-      }
-
+      if (optionText === quizData[currentQuestion].answer) btn.classList.add("correct");
       if (optionText === userAnswers[currentQuestion]) {
-        if (userAnswers[currentQuestion] === quizData[currentQuestion].answer) {
+        if (userAnswers[currentQuestion] === quizData[currentQuestion].answer)
           btn.classList.add("correct");
-        } else {
-          btn.classList.add("wrong");
-        }
+        else btn.classList.add("wrong");
       }
     }
 
@@ -257,19 +251,17 @@ function showQuestion() {
 
 // === HANDLE ANSWER ===
 function handleAnswer(selectedOption, btn) {
-  if (userAnswers[currentQuestion] !== null) return; // prevent multiple answers
-
+  if (userAnswers[currentQuestion] !== null) return;
   userAnswers[currentQuestion] = selectedOption;
   const correctAnswer = quizData[currentQuestion].answer;
   const optionButtons = optionsContainer.querySelectorAll(".option");
 
   optionButtons.forEach((button) => {
     button.classList.add("disabled");
-    if (button.textContent === correctAnswer) {
-      button.classList.add("correct");
-    } else if (button.textContent === selectedOption && selectedOption !== correctAnswer) {
+    if (button.textContent === correctAnswer) button.classList.add("correct");
+    else if (button.textContent === selectedOption && selectedOption !== correctAnswer)
       button.classList.add("wrong");
-    }
+    
   });
 
   if (selectedOption === correctAnswer) score++;
@@ -298,13 +290,11 @@ function showResults() {
   quizWrapper.style.display = "none";
   resultWrapper.style.display = "flex";
   scoreText.textContent = `${username}, your score is: ${score} / ${quizData.length}`;
-  if (score === quizData.length) {
+  if (score === quizData.length)
     messageText.textContent = "Excellent! Perfect score!";
-  } else if (score >= quizData.length / 2) {
+  else if (score >= quizData.length / 2)
     messageText.textContent = "Good job! You passed!";
-  } else {
-    messageText.textContent = "Keep practicing!";
-  }
+  else messageText.textContent = "Keep practicing!";
 }
 
 // === RESTART QUIZ ===
