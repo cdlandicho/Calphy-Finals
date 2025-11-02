@@ -12,44 +12,36 @@ body {
   overflow-x: hidden;
 }
 
-/* NAVBAR */
-.navbar {
+.back-button {
   position: fixed;
   top: 20px;
-  left: 50%;
+  left: 5%;
   transform: translateX(-50%);
-  width: 80%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 40px;
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
+  z-index: 100;
+  
+  display: inline-flex;
   align-items: center;
-  z-index: 10;
-}
-
-.navbar .logo {
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-
-.navbar nav a {
-  color: white;
-  margin: 0 15px;
+  gap: 8px;
+  
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 20px;
+  
+  font: 500 0.95rem/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
   text-decoration: none;
-  font-weight: 500;
+  
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.navbar nav a.sign-in {
-  border: 1px solid white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  transition: background 0.3s;
-}
-
-.navbar nav a.sign-in:hover {
-  background: rgba(255, 255, 255, 0.2);
+.back-button:hover {
+  color: #0066cc;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* MAIN CONTENT SECTIONS */
