@@ -366,3 +366,42 @@ restartBtn.onclick = () => {
   currentQuestion = 0;
   userAnswers = Array(quizData.length).fill(null);
 };
+
+// === REVIEW QUIZ ===
+const reviewBtn = document.getElementById("review-btn");
+const reviewWrapper = document.getElementById("review-wrapper");
+const reviewContent = document.getElementById("review-content");
+const backToResultBtn = document.getElementById("back-to-result-btn");
+
+reviewBtn.onclick = () => {
+  resultWrapper.style.display = "none";    // hide score screen
+  reviewWrapper.style.display = "flex";    // show review screen
+  generateReview();
+};
+
+function generateReview() {
+  reviewContent.innerHTML = ""; // clear previous content
+
+  quizData.forEach((q, index) => {
+    const userAnswer = userAnswers[index];
+    const correctAnswer = q.answer;
+
+    const isCorrect = userAnswer === correctAnswer;
+    
+    const div = document.createElement("div");
+    div.classList.add("review-item");
+
+    div.innerHTML = `
+      <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+      <p>Your Answer: <span class="${isCorrect ? "correct-text" : "wrong-text"}">${userAnswer ?? "No answer"}</span></p>
+      <p>Correct Answer: <span class="correct-text">${correctAnswer}</span></p>
+    `;
+
+    reviewContent.appendChild(div);
+  });
+}
+
+backToResultBtn.onclick = () => {
+  reviewWrapper.style.display = "none";   // hide review screen
+  resultWrapper.style.display = "flex";   // show score screen
+};
