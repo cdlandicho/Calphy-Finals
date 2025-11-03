@@ -13,60 +13,36 @@ body {
   min-height: 100vh;
 }
 
-/* Navbar */
-.navbar {
+.back-button {
   position: fixed;
   top: 20px;
-  left: 50%;
+  left: 5%;
   transform: translateX(-50%);
   z-index: 100;
-  width: 90%;
-  max-width: 800px;
-}
-
-.navbar-content {
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 50px;
-  padding: 12px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px 20px;
+  
+  font: 500 0.95rem/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
+  text-decoration: none;
+  
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.navbar-logo {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.navbar-logo:hover {
+.back-button:hover {
   color: #0066cc;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 24px;
-}
-
-.navbar-links a {
-  color: #1a1a1a;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.navbar-links a:hover {
-  color: #0066cc;
-}
-
-.navbar-links a.active { 
-  color: #0066cc; 
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* Main Container */
