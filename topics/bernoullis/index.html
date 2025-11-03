@@ -3,104 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bernoulli’s Principle Interactive Page</title>
+  <title>Bernoulli's Principle - Fluids</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <a href="../../FINAL/index.html" class="navbar-logo">Fluids</a>
+    <div class="navbar-links">
+      <a href="../../FINAL/index.html#about">Topics</a>
+      <a href="../../Developer/developer.html">About</a>
+      <a href="../../Quiz/quiz.html">Quiz</a>
+      <a href="../../Quiz/leaderboard.html">Leaderboard</a>
+    </div>
+  </div>
+</nav>
 
-<!-- Back Button -->
-<a href="javascript:history.back()" class="back-button">
-  ← Back
-</a>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="section">
-      <div class="text">
-        <h2>Understanding Bernoulli’s Equation</h2>
-        <p>
-          Bernoulli's Principle states that an increase in the speed of a fluid causes 
-          a decrease in its pressure or potential energy. This principle, introduced by 
-          Daniel Bernoulli in 1738, explains the relationship between fluid motion and pressure. 
-          One common example is a venturi tube, where, as air moves through the narrowest part of
-          the tube, it speeds up and the pressure drops. In aviation, Bernoulli's Principle is 
-          important for understanding how lift acts on an aircraft wing. Air above a curved top 
-          surface of the wing moves faster than the air beneath the wing, thereby generating lower 
-          pressure above and greater pressure below.
-        </p>
-      </div>
-      <div class="image-box">
-        <img src="../asset-topics/bernoullis diadram.png" alt="Bernoulli Explanation Diagram" />
-      </div>
-    </section>
-
-    <!-- INTERACTIVE FLOW ILLUSTRATION -->
-    <section id="illustration">
-      <h2>Interactive Bernoulli Flow</h2>
-      <p class="subtitle">
-        Adjust the flow speed to observe how pressure changes in the wide and
-        narrow sections of a pipe.
+<main class="topic-container">
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="topic-title">Bernoulli's Principle</h1>
+      <p class="topic-subtitle">Understanding Fluid Dynamics and Pressure</p>
+      <p class="topic-description">
+        Bernoulli's Principle states that an increase in the speed of a fluid causes a decrease in its pressure or potential energy. 
+        This principle, introduced by Daniel Bernoulli in 1738, explains the relationship between fluid motion and pressure, 
+        and is fundamental in understanding flight, fluid flow through pipes, and many engineering applications.
       </p>
+    </div>
+  </section>
 
-      <div class="illustration-box">
-        <div class="flow-diagram">
-          <img src="../asset-topics/flow_stage1.png" alt="Bernoulli Flow" class="pipe-image" />
+  <!-- Visual Section -->
+  <section class="visual-section">
+    <div class="content-grid">
+      <div class="visual-box">
+        <img src="../asset-topics/bernoullis diadram.png" alt="Bernoulli's Principle Diagram">
+      </div>
+      <div class="info-box">
+        <h2>Key Concepts</h2>
+        <ul class="concept-list">
+          <li><strong>Pressure Energy:</strong> Energy stored in a fluid due to its pressure</li>
+          <li><strong>Kinetic Energy:</strong> Energy of fluid motion (½ρv²)</li>
+          <li><strong>Potential Energy:</strong> Energy due to height (ρgh)</li>
+          <li><strong>Conservation:</strong> Total energy remains constant along a streamline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-          <div class="flow-dots">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
+  <!-- Formula Section -->
+  <section class="formula-section">
+    <div class="formula-container">
+      <h2>Bernoulli's Equation</h2>
+      <div class="formula-display">
+        <div class="formula-main">P + ½ρv² + ρgh = constant</div>
+      </div>
+      <div class="formula-variables">
+        <div class="variable">
+          <span class="var-symbol">P</span>
+          <span class="var-desc">Pressure (Pa)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">ρ</span>
+          <span class="var-desc">Fluid Density (kg/m³)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">v</span>
+          <span class="var-desc">Velocity (m/s)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">g</span>
+          <span class="var-desc">Gravity (9.8 m/s²)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">h</span>
+          <span class="var-desc">Height (m)</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="pressure-labels">
-        <div class="pressure-label left">P₁</div>
-        <div class="pressure-label right">P₂</div>
-      </div>
-
-      <div class="controls">
-        <label for="speed">Adjust Flow Speed</label>
-        <input type="range" id="speed" min="1" max="5" value="3" step="0.1" />
-      </div>
-
-      <div class="pressure-display">
-        <strong>Pressure Readings:</strong><br />
-        <span>Wide Section (P₁): <span id="p1">120 kPa</span></span><br />
-        <span>Narrow Section (P₂): <span id="p2">90 kPa</span></span>
-      </div>
-    </section>
-
-    <!-- BERNOULLI EQUATION CALCULATOR -->
-    <section class="bernoulli-container">
-      <div class="formula-section">
-        <h2>Bernoulli’s Equation Formula</h2>
-        <h3>P + ½ρv² + ρgh = constant</h3>
-        <p><strong>P</strong> = Pressure (Pa)</p>
-        <p><strong>ρ</strong> = Density (kg/m³)</p>
-        <p><strong>v</strong> = Velocity (m/s)</p>
-        <p><strong>g</strong> = 9.8 m/s²</p>
-        <p><strong>h</strong> = Height (m)</p>
-      </div>
-
+  <!-- Calculator Section -->
+  <section class="calculator-section">
+    <div class="calculator-wrapper">
+      <h2>Calculate Total Energy</h2>
       <div class="calculator">
-        <h3>Bernoulli’s Equation Calculator</h3>
-        <label for="density">Fluid Density (kg/m³)</label>
-        <input type="number" id="density" placeholder="Enter density" />
-
-        <label for="velocity">Velocity (m/s)</label>
-        <input type="number" id="velocity" placeholder="Enter velocity" />
-
-        <label for="height">Height (m)</label>
-        <input type="number" id="height" placeholder="Enter height" />
-
-        <label for="pressure">Pressure (Pa)</label>
-        <input type="number" id="pressure" placeholder="Enter pressure" />
-
-        <button onclick="calculateBernoulli()">Calculate</button>
-        <div id="result"></div>
+        <div class="input-group">
+          <label for="pressure">Pressure (P)</label>
+          <input type="number" id="pressure" placeholder="e.g., 101325" step="0.01">
+          <span class="unit">Pa</span>
+        </div>
+        
+        <div class="input-group">
+          <label for="density">Fluid Density (ρ)</label>
+          <input type="number" id="density" placeholder="e.g., 1000" step="0.01">
+          <span class="unit">kg/m³</span>
+        </div>
+        
+        <div class="input-group">
+          <label for="velocity">Velocity (v)</label>
+          <input type="number" id="velocity" placeholder="e.g., 5" step="0.01">
+          <span class="unit">m/s</span>
+        </div>
+        
+        <div class="input-group">
+          <label for="height">Height (h)</label>
+          <input type="number" id="height" placeholder="e.g., 10" step="0.01">
+          <span class="unit">m</span>
+        </div>
+        
+        <button onclick="calculateBernoulli()" class="calc-button">Calculate Total Energy</button>
+        
+        <div class="result-display" id="resultBox">
+          <div class="result-label">Total Energy per Unit Volume:</div>
+          <div class="result-value" id="result">—</div>
+        </div>
       </div>
-    </section>
-  </main>
-    <script src="script.js"></script>
+      
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>Water flowing at 5 m/s, height 10 m, density 1000 kg/m³, pressure 101325 Pa:</p>
+        <p class="example-calc">E = 101325 + ½(1000)(5)² + (1000)(9.8)(10) = 211825 Pa</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

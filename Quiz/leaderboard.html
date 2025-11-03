@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard - Fluids Quiz</title>
+  <link rel="stylesheet" href="./quiz.css" />
+  <style>
+    /* Leaderboard specific styles */
+    .leaderboard-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .leaderboard-container {
+      position: relative;
+      z-index: 3;
+      background-color: #fff;
+      border-radius: 18px;
+      width: 94%;
+      min-height: 500px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .leaderboard-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .leaderboard-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0A2859;
+      margin-bottom: 10px;
+    }
+
+    .leaderboard-header p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      max-height: 350px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .leaderboard-table::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .leaderboard-table::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .leaderboard-table::-webkit-scrollbar-thumb {
+      background: #007BFF;
+      border-radius: 10px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      background: rgba(0, 123, 255, 0.08);
+      border-radius: 12px;
+      border-left: 4px solid #007BFF;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .leaderboard-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    }
+
+    .leaderboard-item.top-1 {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      border-left-color: #FFD700;
+    }
+
+    .leaderboard-item.top-2 {
+      background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+      border-left-color: #C0C0C0;
+    }
+
+    .leaderboard-item.top-3 {
+      background: linear-gradient(135deg, #CD7F32 0%, #B8860B 100%);
+      border-left-color: #CD7F32;
+    }
+
+    .rank {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0A2859;
+      min-width: 50px;
+    }
+
+    .top-1 .rank, .top-2 .rank, .top-3 .rank {
+      color: white;
+    }
+
+    .player-info {
+      flex-grow: 1;
+      margin-left: 15px;
+    }
+
+    .player-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .top-1 .player-name, .top-2 .player-name, .top-3 .player-name {
+      color: white;
+    }
+
+    .player-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .top-1 .player-date, .top-2 .player-date, .top-3 .player-date {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .score {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #007BFF;
+      min-width: 80px;
+      text-align: right;
+    }
+
+    .top-1 .score, .top-2 .score, .top-3 .score {
+      color: white;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+    }
+
+    .empty-state h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .empty-state p {
+      font-size: 1rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .action-btn {
+      background: transparent;
+      color: #007BFF;
+      border: 2px solid #007BFF;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .action-btn:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .action-btn.danger {
+      color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .action-btn.danger:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="../FINAL/index.html" class="navbar-logo">Fluids</a>
+      <div class="navbar-links">
+        <a href="../FINAL/index.html#about">Topics</a>
+        <a href="../Developer/developer.html">About</a>
+        <a href="./quiz.html">Quiz</a>
+        <a href="#" class="active">Leaderboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Leaderboard Wrapper -->
+  <div class="leaderboard-wrapper">
+    <div class="layer dark"></div>
+    <div class="layer light"></div>
+    <div class="leaderboard-container">
+      <div class="leaderboard-header">
+        <h1>🏆 Leaderboard</h1>
+        <p>Top performers in Fluids Quiz</p>
+      </div>
+
+      <div class="leaderboard-table" id="leaderboard-table">
+        <!-- Leaderboard items will be inserted here -->
+      </div>
+
+      <div class="button-group">
+        <a href="./quiz.html" class="action-btn">Take Quiz</a>
+        <button id="clear-btn" class="action-btn danger">Clear Scores</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./leaderboard.js"></script>
+</body>
+</html>
+

@@ -230,6 +230,7 @@ startBtn.onclick = () => {
   quizWrapper.style.display = "flex";
 
   showQuestion();
+  updateProgressBar();
 };
 
 
@@ -261,6 +262,9 @@ function showQuestion() {
 
   document.getElementById("current").textContent = currentQuestion + 1;
   document.getElementById("total").textContent = quizData.length;
+  
+  // Update progress bar
+  updateProgressBar();
 }
 
 // === HANDLE ANSWER ===
@@ -305,11 +309,53 @@ function showResults() {
   quizWrapper.style.display = "none";
   resultWrapper.style.display = "flex";
   scoreText.textContent = `${username}, your score is: ${score} / ${quizData.length}`;
+  
   if (score === quizData.length)
     messageText.textContent = "Excellent! Perfect score!";
   else if (score >= quizData.length / 2)
     messageText.textContent = "Good job! You passed!";
   else messageText.textContent = "Keep practicing!";
+
+  // Save score to localStorage
+  saveScoreToLeaderboard();
+}
+
+// === SAVE SCORE TO LEADERBOARD ===
+function saveScoreToLeaderboard() {
+  const scoreEntry = {
+    username: username,
+    score: score,
+    total: quizData.length,
+    date: new Date().toISOString(),
+    percentage: Math.round((score / quizData.length) * 100)
+  };
+
+  // Get existing scores
+  let scores = JSON.parse(localStorage.getItem('quizScores') || '[]');
+  
+  // Add new score
+  scores.push(scoreEntry);
+  
+  // Keep only top 100 scores to prevent localStorage from getting too large
+  scores.sort((a, b) => {
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    return new Date(b.date) - new Date(a.date);
+  });
+  scores = scores.slice(0, 100);
+  
+  // Save back to localStorage
+  localStorage.setItem('quizScores', JSON.stringify(scores));
+}
+
+// === PROGRESS BAR ===
+function updateProgressBar() {
+  const progressBar = document.getElementById('progress-bar');
+  if (progressBar) {
+    const progress = ((currentQuestion + 1) / quizData.length) * 100;
+    progressBar.style.width = `${progress}%`;
+  }
 }
 
 // === RESTART QUIZ ===

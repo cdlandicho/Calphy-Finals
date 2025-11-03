@@ -1,78 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fluids</title>
+  <title>Archimedes' Principle - Fluids</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    
-<!-- Back Button -->
-<a href="javascript:history.back()" class="back-button">
-  ← Back
-</a>
-    
-    <!-- Section 1 -->
-    <section class="section">
-      <div class="text">
-        <h2>Archimede’s Principle</h2>
-        <p>
-          Physical law of buoyancy, discovered by the ancient Greek mathematician
-          and inventor Archimedes, stating that any body completely or partially
-          submerged in a fluid is acted upon by an upward, buoyant force equal to
-          the weight of the fluid displaced by the body.
-        </p>
-      </div>
-      <div class="image-box">
+  
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <a href="../../FINAL/index.html" class="navbar-logo">Fluids</a>
+    <div class="navbar-links">
+      <a href="../../FINAL/index.html#about">Topics</a>
+      <a href="../../Developer/developer.html">About</a>
+      <a href="../../Quiz/quiz.html">Quiz</a>
+      <a href="../../Quiz/leaderboard.html">Leaderboard</a>
+    </div>
+  </div>
+</nav>
+
+<main class="topic-container">
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="topic-title">Archimedes' Principle</h1>
+      <p class="topic-subtitle">Understanding Buoyancy and Floating Forces</p>
+      <p class="topic-description">
+        Physical law of buoyancy, discovered by the ancient Greek mathematician and inventor Archimedes, 
+        stating that any body completely or partially submerged in a fluid (gas or liquid) at rest is acted 
+        upon by an upward, or buoyant, force, the magnitude of which is equal to the weight of the fluid 
+        displaced by the body.
+      </p>
+    </div>
+  </section>
+
+  <!-- Visual Section -->
+  <section class="visual-section">
+    <div class="content-grid">
+      <div class="visual-box">
         <img src="../asset-topics/buoyant-force image.png" alt="Buoyant Force Diagram">
       </div>
-    </section>
-
-    <!-- Section 2 -->
-    <section class="section">
-      <div class="text">
-        <h2>Interactive Illustration</h2>
-        <p>
-          Physical law of buoyancy, discovered by the ancient Greek mathematician and inventor Archimedes, 
-          stating that any body completely or partially submerged in a fluid (gas or liquid) at rest is acted 
-          upon by an upward, or buoyant, force, the magnitude of which is equal to the weight of the fluid displaced
-          by the body.
-        </p>
-        <label>Object Density</label>
-        <input type="range" min="100" max="2000" value="1000" id="densityRange">
-        <p>Density of water: <span id="waterDensity">1000 kg/m³</span></p>
+      <div class="info-box">
+        <h2>Key Concepts</h2>
+        <ul class="concept-list">
+          <li><strong>Buoyant Force:</strong> The upward force exerted by a fluid on an object</li>
+          <li><strong>Displacement:</strong> Volume of fluid pushed aside by the submerged object</li>
+          <li><strong>Floating:</strong> Occurs when buoyant force equals object's weight</li>
+          <li><strong>Sinking:</strong> Occurs when object's weight exceeds buoyant force</li>
+        </ul>
       </div>
-      <div class="image-box">
-        <img src="../asset-topics/water-illustration.png" alt="Water Illustration">
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 3 -->
-    <section class="section">
-      <div class="text">
-        <h2>Formula</h2>
-        <p><b>Fb = ρ × g × V</b></p>
-        <p>
-          Where: <br>
-          ρ = density <br>
-          g = acceleration due to gravity (9.8 m/s²) <br>
-          V = volume of fluid displaced by the object (m³)
-        </p>
-        <div class="calculator">
-          <label>Density of Fluid:</label>
-          <input type="number" id="density" placeholder="kg/m³">
-          <label>Volume:</label>
-          <input type="number" id="volume" placeholder="m³">
-          <button onclick="calculate()">Calculate</button>
-          <p>Result: <span id="result">—</span></p>
+  <!-- Formula Section -->
+  <section class="formula-section">
+    <div class="formula-container">
+      <h2>The Formula</h2>
+      <div class="formula-display">
+        <div class="formula-main">F<sub>b</sub> = ρ × g × V</div>
+      </div>
+      <div class="formula-variables">
+        <div class="variable">
+          <span class="var-symbol">F<sub>b</sub></span>
+          <span class="var-desc">Buoyant Force (N)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">ρ</span>
+          <span class="var-desc">Fluid Density (kg/m³)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">g</span>
+          <span class="var-desc">Gravity (9.8 m/s²)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">V</span>
+          <span class="var-desc">Displaced Volume (m³)</span>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Calculator Section -->
+  <section class="calculator-section">
+    <div class="calculator-wrapper">
+      <h2>Calculate Buoyant Force</h2>
+      <div class="calculator">
+        <div class="input-group">
+          <label for="density">Fluid Density (ρ)</label>
+          <input type="number" id="density" placeholder="e.g., 1000" step="0.01">
+          <span class="unit">kg/m³</span>
+        </div>
+        
+        <div class="input-group">
+          <label for="volume">Displaced Volume (V)</label>
+          <input type="number" id="volume" placeholder="e.g., 0.5" step="0.001">
+          <span class="unit">m³</span>
+        </div>
+        
+        <button onclick="calculate()" class="calc-button">Calculate Force</button>
+        
+        <div class="result-display" id="resultBox">
+          <div class="result-label">Buoyant Force:</div>
+          <div class="result-value" id="result">—</div>
+        </div>
+      </div>
+      
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>A ball with volume 0.5 m³ submerged in water (density = 1000 kg/m³):</p>
+        <p class="example-calc">F<sub>b</sub> = 1000 × 9.8 × 0.5 = 4900 N</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

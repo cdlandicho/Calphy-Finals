@@ -1,30 +1,28 @@
-function calculateBernoulli() {
-  const pressure = parseFloat(document.getElementById("pressure").value);
+function calculatePressure() {
   const density = parseFloat(document.getElementById("density").value);
-  const velocity = parseFloat(document.getElementById("velocity").value);
   const height = parseFloat(document.getElementById("height").value);
-  const g = 9.8;
+  const gravity = parseFloat(document.getElementById("gravity").value);
 
   const resultBox = document.getElementById("resultBox");
   const resultElement = document.getElementById("result");
 
-  if (isNaN(pressure) || isNaN(density) || isNaN(velocity) || isNaN(height)) {
+  if (isNaN(density) || isNaN(height) || isNaN(gravity)) {
     resultElement.textContent = "Please fill all fields";
     resultElement.style.color = "#ff6b6b";
     resultBox.classList.add("show");
     return;
   }
 
-  if (density <= 0 || velocity < 0 || height < 0) {
-    resultElement.textContent = "Invalid values entered";
+  if (density <= 0 || height < 0 || gravity <= 0) {
+    resultElement.textContent = "Values must be positive";
     resultElement.style.color = "#ff6b6b";
     resultBox.classList.add("show");
     return;
   }
 
-  const totalEnergy = pressure + (0.5 * density * velocity * velocity) + (density * g * height);
-  resultElement.textContent = `${totalEnergy.toFixed(2)} Pa`;
-  resultElement.style.color = "#74c0fc";
+  const pressure = density * gravity * height;
+  resultElement.textContent = `${pressure.toFixed(2)} Pa`;
+  resultElement.style.color = "#63e6be";
   resultBox.classList.add("show");
 }
 
@@ -34,8 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
   inputs.forEach(input => {
     input.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
-        calculateBernoulli();
+        calculatePressure();
       }
     });
   });
 });
+
