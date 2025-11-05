@@ -326,3 +326,90 @@ body, html {
   background-color: #00a8f3;
 }
 
+/* FOOTER — centered content, logo on the left */
+.footer {
+  width: 100%;
+  background: linear-gradient(180deg, #0b72c2, #003b73);
+  color: white;
+  padding: 10px 5%; /* smaller height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo on the left */
+.footer-logo {
+  position: absolute;
+  left: 50px; /* adjust distance from left */
+  width: 150px; /* bigger logo */
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Footer main container (centered content) */
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+/* Title */
+.footer-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Columns */
+.footer-columns {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-column h3 {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.footer-column a {
+  display: block;
+  color: #d0e8ff;
+  text-decoration: none;
+  margin-bottom: 3px;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+
+.footer-column a:hover {
+  color: #fff;
+}
+
+/* Social icons */
+.footer-social {
+  margin-top: 8px;
+}
+
+.footer-social a {
+  color: white;
+  font-size: 1rem;
+  margin: 0 6px;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: #a9d9ff;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-top: 6px;
+}
