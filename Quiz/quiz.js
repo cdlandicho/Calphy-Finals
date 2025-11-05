@@ -109,7 +109,7 @@ const quizData = [
   },
   {
     question: "What does Archimedes Principle state about buoyancy",
-    options: ["Downward force equals displaced fluid weight", "Downward force equals displaced fluid weight", 
+    options: ["Downward force equals displaced fluid weight", "Upward force equals object weight", 
         "Upward force equals displaced fluid weight", "Downward force equals fluid density"],
     answer: "Upward force equals displaced fluid weight"
   },
