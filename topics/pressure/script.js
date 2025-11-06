@@ -1,3 +1,4 @@
+// ---------------- PRESSURE CALCULATOR ---------------- //
 function calculatePressure() {
   const density = parseFloat(document.getElementById("density").value);
   const height = parseFloat(document.getElementById("height").value);
@@ -13,28 +14,21 @@ function calculatePressure() {
     return;
   }
 
-  if (density <= 0 || height < 0 || gravity <= 0) {
-    resultElement.textContent = "Values must be positive";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
-    return;
-  }
-
   const pressure = density * gravity * height;
   resultElement.textContent = `${pressure.toFixed(2)} Pa`;
   resultElement.style.color = "#63e6be";
   resultBox.classList.add("show");
+
+  // Update pressure bar visual based on pressure
+  document.getElementById("pressureIndicator").style.height = `${Math.min(pressure / 2000, 100)}%`;
 }
 
-// Allow Enter key to calculate
-document.addEventListener('DOMContentLoaded', function() {
-  const inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        calculatePressure();
-      }
-    });
-  });
-});
+// ---------------- WATER DEPTH VISUAL ---------------- //
+function updateWaterLevel() {
+  const h = parseFloat(document.getElementById("height").value);
+  const water = document.getElementById("waterLevel");
 
+  if (!isNaN(h) && h >= 0 && h <= 50) {
+    water.style.height = `${Math.min(h * 3, 100)}%`;
+  }
+}
