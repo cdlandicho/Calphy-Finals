@@ -10,32 +10,25 @@ function calculateBernoulli() {
 
   if (isNaN(pressure) || isNaN(density) || isNaN(velocity) || isNaN(height)) {
     resultElement.textContent = "Please fill all fields";
-    resultElement.style.color = "#ff6b6b";
     resultBox.classList.add("show");
     return;
   }
 
-  if (density <= 0 || velocity < 0 || height < 0) {
-    resultElement.textContent = "Invalid values entered";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
-    return;
-  }
-
-  const totalEnergy = pressure + (0.5 * density * velocity * velocity) + (density * g * height);
+  const totalEnergy = pressure + (0.5 * density * velocity ** 2) + (density * g * height);
   resultElement.textContent = `${totalEnergy.toFixed(2)} Pa`;
-  resultElement.style.color = "#74c0fc";
   resultBox.classList.add("show");
+
+  updateFlowVisual(velocity);
 }
 
-// Allow Enter key to calculate
-document.addEventListener('DOMContentLoaded', function() {
-  const inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        calculateBernoulli();
-      }
-    });
-  });
-});
+function updateFlowVisual(v) {
+  const fluidPath = document.getElementById("fluidPath");
+
+  const minWidth = 10;
+  const maxWidth = 30;
+
+  let newWidth = maxWidth - v * 1.5;
+  if (newWidth < minWidth) newWidth = minWidth;
+
+  fluidPath.style.strokeWidth = newWidth + "px";
+}
