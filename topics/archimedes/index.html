@@ -7,24 +7,20 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+
 <a href="javascript:history.back()" class="back-button">← Back</a>
 
-
 <main class="topic-container">
-  
+
   <!-- Hero Section -->
   <section class="hero-section">
-    <div class="hero-content">
-      <h1 class="topic-title">Archimedes' Principle</h1>
-      <p class="topic-subtitle">Understanding Buoyancy and Floating Forces</p>
-      <p class="topic-description">
-        Physical law of buoyancy, discovered by the ancient Greek mathematician and inventor Archimedes, 
-        stating that any body completely or partially submerged in a fluid (gas or liquid) at rest is acted 
-        upon by an upward, or buoyant, force, the magnitude of which is equal to the weight of the fluid 
-        displaced by the body.
-      </p>
-    </div>
+    <h1 class="topic-title">Archimedes' Principle</h1>
+    <p class="topic-subtitle">Understanding Buoyancy and Floating Forces</p>
+    <p class="topic-description">
+      Archimedes' Principle states that any object fully or partially submerged in a fluid
+      is pushed upward by a buoyant force equal to the weight of the fluid displaced.
+      This principle explains why objects float or sink depending on their density.
+    </p>
   </section>
 
   <!-- Visual Section -->
@@ -36,10 +32,10 @@
       <div class="info-box">
         <h2>Key Concepts</h2>
         <ul class="concept-list">
-          <li><strong>Buoyant Force:</strong> The upward force exerted by a fluid on an object</li>
-          <li><strong>Displacement:</strong> Volume of fluid pushed aside by the submerged object</li>
-          <li><strong>Floating:</strong> Occurs when buoyant force equals object's weight</li>
-          <li><strong>Sinking:</strong> Occurs when object's weight exceeds buoyant force</li>
+          <li><strong>Buoyant Force:</strong> Upward force exerted by a fluid.</li>
+          <li><strong>Displacement:</strong> Amount of fluid pushed aside by the object.</li>
+          <li><strong>Floating:</strong> Occurs when buoyant force equals an object's weight.</li>
+          <li><strong>Sinking:</strong> Happens when weight is greater than buoyant force.</li>
         </ul>
       </div>
     </div>
@@ -47,62 +43,79 @@
 
   <!-- Formula Section -->
   <section class="formula-section">
-    <div class="formula-container">
-      <h2>The Formula</h2>
-      <div class="formula-display">
-        <div class="formula-main">F<sub>b</sub> = ρ × g × V</div>
-      </div>
-      <div class="formula-variables">
-        <div class="variable">
-          <span class="var-symbol">F<sub>b</sub></span>
-          <span class="var-desc">Buoyant Force (N)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">ρ</span>
-          <span class="var-desc">Fluid Density (kg/m³)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">g</span>
-          <span class="var-desc">Gravity (9.8 m/s²)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">V</span>
-          <span class="var-desc">Displaced Volume (m³)</span>
-        </div>
-      </div>
+    <h2>The Formula</h2>
+    <div class="formula-main">F<sub>b</sub> = ρ × g × V</div>
+
+    <div class="formula-variables">
+      <div class="variable"><span class="var-symbol">F<sub>b</sub></span> Buoyant Force (N)</div>
+      <div class="variable"><span class="var-symbol">ρ</span> Fluid Density (kg/m³)</div>
+      <div class="variable"><span class="var-symbol">g</span> Gravity (m/s²)</div>
+      <div class="variable"><span class="var-symbol">V</span> Displaced Volume (m³)</div>
     </div>
   </section>
 
   <!-- Calculator Section -->
   <section class="calculator-section">
-    <div class="calculator-wrapper">
-      <h2>Calculate Buoyant Force</h2>
-      <div class="calculator">
-        <div class="input-group">
-          <label for="density">Fluid Density (ρ)</label>
-          <input type="number" id="density" placeholder="e.g., 1000" step="0.01">
-          <span class="unit">kg/m³</span>
-        </div>
-        
-        <div class="input-group">
-          <label for="volume">Displaced Volume (V)</label>
-          <input type="number" id="volume" placeholder="e.g., 0.5" step="0.001">
-          <span class="unit">m³</span>
-        </div>
-        
-        <button onclick="calculate()" class="calc-button">Calculate Force</button>
-        
-        <div class="result-display" id="resultBox">
-          <div class="result-label">Buoyant Force:</div>
-          <div class="result-value" id="result">—</div>
-        </div>
+    <h2>Calculate Buoyant Force</h2>
+    <div class="calculator">
+
+      <div class="input-group">
+        <label for="density">Fluid Density (ρ)</label>
+        <input type="number" id="density" placeholder="e.g., 1000">
+        <span class="unit">kg/m³</span>
       </div>
-      
-      <div class="example-box">
-        <h3>Example</h3>
-        <p>A ball with volume 0.5 m³ submerged in water (density = 1000 kg/m³):</p>
-        <p class="example-calc">F<sub>b</sub> = 1000 × 9.8 × 0.5 = 4900 N</p>
+
+      <div class="input-group">
+        <label for="volume">Displaced Volume (V)</label>
+        <input type="number" id="volume" placeholder="e.g., 0.5">
+        <span class="unit">m³</span>
       </div>
+
+      <div class="input-group">
+        <label for="gravity">Gravity (g)</label>
+        <input type="number" id="gravity" value="9.8" step="0.1">
+        <span class="unit">m/s²</span>
+      </div>
+
+      <button onclick="calculate()" class="calc-button">Calculate Force</button>
+
+      <div class="result-display" id="resultBox">
+        <div class="result-label">Buoyant Force:</div>
+        <div class="result-value" id="result">—</div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h3>Example</h3>
+      <p>If a submerged object has a volume of 0.5 m³ in water (ρ = 1000 kg/m³):</p>
+      <p class="example-calc">F<sub>b</sub> = 1000 × 9.8 × 0.5 = <strong>4900 N</strong></p>
+    </div>
+  </section>
+
+  <!-- Interactive Floating Simulation -->
+  <section class="float-sim-section">
+    <h2>Interactive Floating Model</h2>
+    <p class="sim-description">Adjust the densities to see whether the object floats or sinks.</p>
+
+    <div class="sim-container">
+      <div class="water"></div>
+      <div class="object" id="floatingObject"></div>
+    </div>
+
+    <div class="sim-controls">
+      <div class="input-group">
+        <label>Object Density (kg/m³)</label>
+        <input type="number" id="objectDensity" placeholder="e.g., 500">
+      </div>
+
+      <div class="input-group">
+        <label>Fluid Density (kg/m³)</label>
+        <input type="number" id="fluidDensity" placeholder="e.g., 1000">
+      </div>
+
+      <button onclick="checkFloat()" class="calc-button">Simulate</button>
+
+      <div class="float-result" id="floatResult">—</div>
     </div>
   </section>
 
