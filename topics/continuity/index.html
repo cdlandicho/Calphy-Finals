@@ -7,13 +7,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+
 <a href="javascript:history.back()" class="back-button">← Back</a>
 
-
 <main class="topic-container">
-  
-  <!-- Hero Section -->
+
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="topic-title">Continuity Principle</h1>
@@ -26,7 +24,6 @@
     </div>
   </section>
 
-  <!-- Visual Section -->
   <section class="visual-section">
     <div class="content-grid">
       <div class="visual-box">
@@ -44,7 +41,6 @@
     </div>
   </section>
 
-  <!-- Formula Section -->
   <section class="formula-section">
     <div class="formula-container">
       <h2>Continuity Equation</h2>
@@ -52,62 +48,58 @@
         <div class="formula-main">A₁V₁ = A₂V₂</div>
       </div>
       <div class="formula-variables">
-        <div class="variable">
-          <span class="var-symbol">A₁</span>
-          <span class="var-desc">Area 1 (m²)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">V₁</span>
-          <span class="var-desc">Velocity 1 (m/s)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">A₂</span>
-          <span class="var-desc">Area 2 (m²)</span>
-        </div>
-        <div class="variable">
-          <span class="var-symbol">V₂</span>
-          <span class="var-desc">Velocity 2 (m/s)</span>
-        </div>
+        <div class="variable"><span class="var-symbol">A₁</span><span class="var-desc">Area 1 (m²)</span></div>
+        <div class="variable"><span class="var-symbol">V₁</span><span class="var-desc">Velocity 1 (m/s)</span></div>
+        <div class="variable"><span class="var-symbol">A₂</span><span class="var-desc">Area 2 (m²)</span></div>
+        <div class="variable"><span class="var-symbol">V₂</span><span class="var-desc">Velocity 2 (m/s)</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Calculator Section -->
-  <section class="calculator-section">
-    <div class="calculator-wrapper">
-      <h2>Calculate Flow Velocity</h2>
-      <div class="calculator">
-        <div class="input-group">
-          <label for="area1">Cross-Sectional Area 1 (A₁)</label>
-          <input type="number" id="area1" placeholder="e.g., 4" step="0.01">
-          <span class="unit">m²</span>
-        </div>
-        
-        <div class="input-group">
-          <label for="velocity1">Flow Velocity 1 (V₁)</label>
-          <input type="number" id="velocity1" placeholder="e.g., 2" step="0.01">
-          <span class="unit">m/s</span>
-        </div>
-        
-        <div class="input-group">
-          <label for="area2">Cross-Sectional Area 2 (A₂)</label>
-          <input type="number" id="area2" placeholder="e.g., 2" step="0.01">
-          <span class="unit">m²</span>
-        </div>
-        
-        <button onclick="calculateContinuity()" class="calc-button">Calculate V₂</button>
-        
-        <div class="result-display" id="resultBox">
-          <div class="result-label">Flow Velocity 2 (V₂):</div>
-          <div class="result-value" id="result">—</div>
+  <!-- INTERACTIVE + CALCULATOR -->
+  <section class="interactive-section">
+    <div class="interactive-container">
+
+      <!-- Pipe Model -->
+      <div class="pipe-box">
+        <h3>Flow Visualization</h3>
+        <div class="pipe">
+          <div class="pipe-left"></div>
+          <div class="pipe-narrow"></div>
+          <div class="pipe-right"></div>
+          <div id="flow-arrows"></div>
         </div>
       </div>
-      
-      <div class="example-box">
-        <h3>Example</h3>
-        <p>Water flows through a pipe that narrows from A₁ = 4 m² to A₂ = 2 m² at V₁ = 2 m/s:</p>
-        <p class="example-calc">V₂ = (A₁ × V₁) / A₂ = (4 × 2) / 2 = 4 m/s</p>
+
+      <!-- Calculator -->
+      <div class="calculator-wrapper">
+        <h2>Calculate Flow Velocity</h2>
+        <div class="calculator">
+          <div class="input-group">
+            <label>Cross-Sectional Area 1 (A₁)</label>
+            <input type="number" id="area1" placeholder="e.g., 4" step="0.01">
+            <span class="unit">m²</span>
+          </div>
+          <div class="input-group">
+            <label>Flow Velocity 1 (V₁)</label>
+            <input type="number" id="velocity1" placeholder="e.g., 2" step="0.01">
+            <span class="unit">m/s</span>
+          </div>
+          <div class="input-group">
+            <label>Cross-Sectional Area 2 (A₂)</label>
+            <input type="number" id="area2" placeholder="e.g., 2" step="0.01">
+            <span class="unit">m²</span>
+          </div>
+
+          <button onclick="calculateContinuity()" class="calc-button">Calculate V₂</button>
+
+          <div class="result-display">
+            <div class="result-label">Flow Velocity 2 (V₂):</div>
+            <div class="result-value" id="result">—</div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 

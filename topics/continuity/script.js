@@ -1,39 +1,29 @@
 function calculateContinuity() {
-  const area1 = parseFloat(document.getElementById("area1").value);
-  const velocity1 = parseFloat(document.getElementById("velocity1").value);
-  const area2 = parseFloat(document.getElementById("area2").value);
+  let A1 = parseFloat(document.getElementById("area1").value);
+  let V1 = parseFloat(document.getElementById("velocity1").value);
+  let A2 = parseFloat(document.getElementById("area2").value);
 
-  const resultBox = document.getElementById("resultBox");
-  const resultElement = document.getElementById("result");
-
-  if (isNaN(area1) || isNaN(velocity1) || isNaN(area2)) {
-    resultElement.textContent = "Please fill all fields";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
+  if (!A1 || !V1 || !A2) {
+    document.getElementById("result").textContent = "Incomplete Input";
     return;
   }
 
-  if (area1 <= 0 || velocity1 < 0 || area2 <= 0) {
-    resultElement.textContent = "Values must be positive";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
-    return;
-  }
+  let V2 = (A1 * V1) / A2;
+  document.getElementById("result").textContent = V2.toFixed(2) + " m/s";
 
-  const velocity2 = (area1 * velocity1) / area2;
-  resultElement.textContent = `${velocity2.toFixed(2)} m/s`;
-  resultElement.style.color = "#a5d8ff";
-  resultBox.classList.add("show");
+  updateFlowSpeed(V2);
 }
 
-// Allow Enter key to calculate
-document.addEventListener('DOMContentLoaded', function() {
-  const inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        calculateContinuity();
-      }
-    });
-  });
-});
+function updateFlowSpeed(speed) {
+  let container = document.getElementById("flow-arrows");
+  container.innerHTML = ""; 
+
+  let numArrows = 8;
+  for (let i = 0; i < numArrows; i++) {
+    let arrow = document.createElement("div");
+    arrow.classList.add("arrow");
+    arrow.textContent = "➤";
+    arrow.style.animationDuration = (2 / speed) + "s"; 
+    container.appendChild(arrow);
+  }
+}
