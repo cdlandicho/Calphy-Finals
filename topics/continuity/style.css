@@ -370,3 +370,66 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep your existing styles — only adding below */
+
+.interactive-section {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.interactive-container {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Pipe Visualization */
+.pipe-box {
+  width: 380px;
+  text-align: center;
+  color: white;
+}
+
+.pipe {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pipe-left, .pipe-right, .pipe-narrow {
+  height: 40px;
+  background: rgba(255,255,255,0.3);
+  border: 2px solid white;
+}
+
+.pipe-left { width: 45%; }
+.pipe-narrow { width: 15%; }
+.pipe-right { width: 40%; }
+
+#flow-arrows {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: 20px;
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.arrow {
+  font-size: 26px;
+  color: #00eaff;
+  margin-right: 18px;
+  animation: flow linear infinite;
+}
+
+@keyframes flow {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(120%); }
+}
