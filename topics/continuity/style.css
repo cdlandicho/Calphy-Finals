@@ -141,7 +141,7 @@ body {
 }
 
 .concept-list strong {
-  color: #a5d8ff;
+  color: #0066cc;
   font-weight: 600;
 }
 
@@ -197,7 +197,7 @@ body {
 .var-symbol {
   font-size: 2rem;
   font-weight: 700;
-  color: #a5d8ff;
+  color: #0066cc;
 }
 
 .var-desc {
@@ -255,7 +255,7 @@ body {
 
 .input-group input:focus {
   outline: none;
-  border-color: #a5d8ff;
+  border-color: #0066cc;
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -279,7 +279,7 @@ body {
   padding: 18px;
   font-size: 1.2rem;
   font-weight: 600;
-  background: #74c0fc;
+  background: #0066cc;
   color: white;
   border: none;
   border-radius: 10px;
@@ -291,7 +291,7 @@ body {
 .calc-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(116, 192, 252, 0.5);
-  background: #4dabf7;
+  background: #0066cc;
 }
 
 .result-display {
@@ -316,20 +316,20 @@ body {
 .result-value {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #a5d8ff;
+  color: #0066cc;
 }
 
 .example-box {
   background: rgba(0, 0, 0, 0.2);
   padding: 30px;
   border-radius: 10px;
-  border-left: 4px solid #a5d8ff;
+  border-left: 4px solid #0066cc;
 }
 
 .example-box h3 {
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #a5d8ff;
+  color: #0066cc;
 }
 
 .example-box p {
