@@ -59,6 +59,9 @@ body {
   text-align: center;
   padding: 60px 20px;
   margin-bottom: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(50px);
 }
 
 .topic-title {
@@ -71,13 +74,14 @@ body {
 
 .topic-subtitle {
   font-size: 1.3rem;
-  font-weight: 300;
+  font-weight: 600;
   margin-bottom: 20px;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .topic-description {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 510;
   line-height: 1.8;
   max-width: 900px;
   margin: 0 auto;
@@ -87,6 +91,7 @@ body {
 /* Visual Section */
 .visual-section {
   margin-bottom: 60px;
+  
 }
 
 .content-grid {
