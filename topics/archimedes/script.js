@@ -1,39 +1,38 @@
 function calculate() {
-  const density = parseFloat(document.getElementById("density").value);
-  const volume = parseFloat(document.getElementById("volume").value);
-  const g = 9.8;
+  let rho = parseFloat(document.getElementById("density").value); // kg/m³
+  let V = parseFloat(document.getElementById("volume").value); // m³
+  let g = parseFloat(document.getElementById("gravity").value); // m/s²
 
-  const resultBox = document.getElementById("resultBox");
-  const resultElement = document.getElementById("result");
-
-  if (isNaN(density) || isNaN(volume)) {
-    resultElement.textContent = "Please enter valid numbers";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
+  if (isNaN(rho) || isNaN(V) || isNaN(g)) {
+    alert("Please enter valid numbers.");
     return;
   }
 
-  if (density <= 0 || volume <= 0) {
-    resultElement.textContent = "Values must be positive";
-    resultElement.style.color = "#ff6b6b";
-    resultBox.classList.add("show");
-    return;
-  }
-
-  const Fb = density * g * volume;
-  resultElement.textContent = `${Fb.toFixed(2)} N`;
-  resultElement.style.color = "#4dabf7";
-  resultBox.classList.add("show");
+  let Fb = rho * g * V; // Newtons
+  document.getElementById("resultBox").classList.add("show");
+  document.getElementById("result").innerHTML = Fb.toFixed(2) + " N";
 }
 
-// Allow Enter key to calculate
-document.addEventListener('DOMContentLoaded', function() {
-  const inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(input => {
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        calculate();
-      }
-    });
-  });
-});
+function checkFloat() {
+  let objectD = parseFloat(document.getElementById("objectDensity").value);
+  let fluidD = parseFloat(document.getElementById("fluidDensity").value);
+  let object = document.getElementById("floatingObject");
+  let resultText = document.getElementById("floatResult");
+
+  if (isNaN(objectD) || isNaN(fluidD)) {
+    alert("Please enter values first.");
+    return;
+  }
+
+  if (objectD < fluidD) {
+    object.classList.remove("sink");
+    object.classList.add("float");
+    resultText.innerHTML = "✅ The object FLOATS (ρobject < ρfluid)";
+    resultText.style.color = "#4aed88";
+  } else {
+    object.classList.remove("float");
+    object.classList.add("sink");
+    resultText.innerHTML = "❌ The object SINKS (ρobject > ρfluid)";
+    resultText.style.color = "#ff6b6b";
+  }
+}
