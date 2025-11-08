@@ -19,6 +19,9 @@ function checkFloat() {
   let object = document.getElementById("floatingObject");
   let resultText = document.getElementById("floatResult");
 
+  // ✅ ADD THIS LINE (reference the wing)
+  let wing = document.getElementById("wing");
+
   if (isNaN(objectD) || isNaN(fluidD)) {
     alert("Please enter values first.");
     return;
@@ -28,11 +31,21 @@ function checkFloat() {
     object.classList.remove("sink");
     object.classList.add("float");
     resultText.innerHTML = "✅ The object FLOATS (ρobject < ρfluid)";
-    resultText.style.color = "#4aed88";
+    resultText.style.color = "#214ff2ff";
+
+    // ✅ MAKE THE AIRPLANE LIFT
+    wing.classList.remove("lift-reset");
+    wing.classList.add("lift-up");
+
   } else {
     object.classList.remove("float");
     object.classList.add("sink");
     resultText.innerHTML = "❌ The object SINKS (ρobject > ρfluid)";
     resultText.style.color = "#ff6b6b";
+
+    // ✅ RETURN WING TO NORMAL POSITION
+    wing.classList.remove("lift-up");
+    wing.classList.add("lift-reset");
   }
 }
+

@@ -213,3 +213,74 @@ body{
   font-size:1.3rem;
   font-weight:600;
 }
+
+/* AIRFOIL VISUAL */
+.airfoil-visual-section {
+  text-align: center;
+}
+
+.airfoil-description {
+  max-width: 700px;
+  margin: 10px auto 30px;
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.airfoil-scene {
+  position: relative;
+  width: 350px;
+  height: 180px;
+  margin: auto;
+  overflow: visible;
+}
+
+/* Wing Shape */
+.wing-shape {
+  width: 260px;
+  height: 70px;
+  background: linear-gradient(145deg, #ffffff33, #ffffff10);
+  border-radius: 50px 10px 50px 10px;
+  border: 2px solid rgba(255,255,255,0.4);
+  margin: auto;
+  position: relative;
+  top: 45px;
+  backdrop-filter: blur(8px);
+}
+
+/* Air Flow Lines */
+.flow-line {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 2px;
+  animation: airflow 2.8s linear infinite;
+}
+
+.line1 { top: 10px; animation-delay: 0s; }
+.line2 { top: 40px; animation-delay: .4s; }
+.line3 { top: 100px; animation-delay: .8s; }
+.line4 { top: 130px; animation-delay: 1.2s; }
+
+@keyframes airflow {
+  0% { transform: translateX(-120%); opacity: 0; }
+  20% { opacity: .9; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* Lift Animation States */
+#wing {
+  transition: transform 1.2s ease, box-shadow 1.2s ease;
+}
+
+/* When object floats */
+.lift-up {
+  transform: translateY(-50px) rotate(-5deg);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* When object sinks (default) */
+.lift-reset {
+  transform: translateY(0) rotate(0);
+  box-shadow: none;
+}
