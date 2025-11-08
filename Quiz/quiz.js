@@ -316,12 +316,33 @@ function showResults() {
     messageText.textContent = "Good job! You passed!";
   else messageText.textContent = "Keep practicing!";
 
-  // Save score to localStorage
+  // Save score to Supabase
   saveScoreToLeaderboard();
 }
 
+// === GENERATE UUID FROM USERNAME ===
+// Creates a deterministic UUID v5 from username
+function generateUUIDFromUsername(username) {
+  // Simple UUID v4-like generation from username hash
+  // This creates a consistent UUID for the same username
+  const namespace = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // Standard namespace UUID
+  const hash = username.split('').reduce((acc, char) => {
+    return ((acc << 5) - acc) + char.charCodeAt(0);
+  }, 0);
+  
+  // Generate UUID v4 format
+  const hex = Math.abs(hash).toString(16).padStart(32, '0');
+  return [
+    hex.substring(0, 8),
+    hex.substring(8, 12),
+    '4' + hex.substring(13, 16), // Version 4
+    ((parseInt(hex[16], 16) & 0x3) | 0x8).toString(16) + hex.substring(17, 20), // Variant
+    hex.substring(20, 32)
+  ].join('-');
+}
+
 // === SAVE SCORE TO LEADERBOARD ===
-function saveScoreToLeaderboard() {
+async function saveScoreToLeaderboard() {
   const scoreEntry = {
     username: username,
     score: score,
@@ -330,23 +351,57 @@ function saveScoreToLeaderboard() {
     percentage: Math.round((score / quizData.length) * 100)
   };
 
-  // Get existing scores
-  let scores = JSON.parse(localStorage.getItem('quizScores') || '[]');
-  
-  // Add new score
-  scores.push(scoreEntry);
-  
-  // Keep only top 100 scores to prevent localStorage from getting too large
-  scores.sort((a, b) => {
-    if (b.score !== a.score) {
-      return b.score - a.score;
+  try {
+    // Check if user is authenticated with Supabase Auth
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    
+    let userId;
+    
+    if (user && !authError) {
+      // User is authenticated - use their actual Supabase Auth user_id
+      userId = user.id;
+      console.log('User is authenticated:', user.email || user.id);
+    } else {
+      // User is not authenticated - cannot save score
+      console.warn('User not authenticated. Score will not be saved.');
+      console.warn('Note: User must be logged in to save scores to Supabase.');
+      alert('You must be logged in to save your score. Please sign in and try again.');
+      return;
     }
-    return new Date(b.date) - new Date(a.date);
-  });
-  scores = scores.slice(0, 100);
-  
-  // Save back to localStorage
-  localStorage.setItem('quizScores', JSON.stringify(scores));
+    
+    // Store username mapping in localStorage (user_id -> username)
+    const usernameMap = JSON.parse(localStorage.getItem('usernameMap') || '{}');
+    usernameMap[userId] = username;
+    localStorage.setItem('usernameMap', JSON.stringify(usernameMap));
+    
+    // Submit to Supabase - using fluids_leaderboard table
+    const { data, error } = await supabase
+      .from('fluids_leaderboard')
+      .insert([
+        {
+          user_id: userId,
+          score: scoreEntry.score,
+          created_at: new Date().toISOString()
+        }
+      ])
+      .select();
+
+    if (error) {
+      console.error('Error saving score to Supabase:', error);
+      console.error('Error details:', error.message);
+      alert('Failed to save score. Please try again.');
+    } else {
+      console.log('Score saved to Supabase successfully!');
+      console.log('Saved data:', data);
+      console.log('User ID:', userId);
+      console.log('Username:', username);
+      console.log('Score:', scoreEntry.score);
+      alert(`Score saved! Check the browser console for details.`);
+    }
+  } catch (err) {
+    console.error('Error connecting to Supabase:', err);
+    alert('Failed to connect to Supabase. Please check your connection and try again.');
+  }
 }
 
 // === PROGRESS BAR ===
