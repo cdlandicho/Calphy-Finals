@@ -647,6 +647,52 @@ body {
   background: #0088cc;
   transform: translateY(-3px);
 }
+/* Goals Wrapper: Image + Cards */
+.goals-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+/* Left-side Image */
+.goals-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.goals-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Goals Container */
+.goals-container {
+  flex: 2;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Responsive: stack image above cards on small screens */
+@media (max-width: 900px) {
+  .goals-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .goals-container {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  .goals-image {
+    margin-bottom: 20px;
+  }
+}
 
 
 
