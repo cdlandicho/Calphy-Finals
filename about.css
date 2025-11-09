@@ -79,7 +79,7 @@ body {
   overflow: hidden;
   width: 90%;
   max-width: 1500px;
-  height: 500px;
+  height: 550px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -488,5 +488,125 @@ body {
   margin-right: 6px;
   font-size: 0.9rem;
 }
+/* --- About Calphy Fluids Section --- */
+.about-extra {
+  width: 100%;
+  padding: 80px 5%;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.05), rgba(0,0,0,0.4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-extra .extra-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  gap: 40px;
+  flex-wrap: wrap;
+  text-align: left;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Text side */
+.text-box {
+  flex: 1 1 500px;
+}
+
+.text-box h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* Image side */
+.image-box {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease;
+}
+
+.image-box img:hover {
+  transform: scale(1.05);
+}
+
+/* Down arrow */
+.scroll-down {
+  margin-top: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #00aaff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.scroll-down:hover {
+  transform: translateY(5px);
+  color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .about-extra .extra-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-box {
+    order: 2;
+  }
+
+  .text-box {
+    order: 1;
+  }
+
+  .text-box h2 {
+    text-align: center;
+  }
+}
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00aaff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 15px 18px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: none; /* hidden by default */
+  z-index: 999;
+  transition: background 0.3s, transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+#back-to-top.show {
+  display: block;
+  opacity: 1;
+}
+
+#back-to-top:hover {
+  background: #0088cc;
+  transform: translateY(-3px);
+}
+
 
 

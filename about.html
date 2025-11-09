@@ -27,14 +27,45 @@
     <div class="about-content">
       <h1>About Us</h1>
       <p>
-        We are a creative team dedicated to bringing innovation and emotion
-        into every digital experience. Our goal is to design meaningful
-        connections through technology and art.
+        Calphy Fluids is a learning platform that simplifies 
+        fluid mechanics concepts. We aim to make understanding 
+        the behavior and motion of fluids clear, engaging, and easy for everyone.
       </p>
       <a href="#goals" class="learn-more-btn">Learn More</a>
     </div>
   </div>
 </section>
+
+<!-- ===== About Calphy Fluids Section ===== -->
+<section class="about-extra" id="about-calphy">
+  <div class="extra-content">
+    <div class="text-box">
+      <h2>About Calphy Fluids</h2>
+      <p>
+        Fluids by Calphy is more than just a learning platform — it’s a creative 
+        approach to understanding how fluids behave in our world. We bring together 
+        the principles of physics and technology to make learning more engaging and practical.
+      </p>
+      <p>
+        Designed for students and educators alike, our platform simplifies complex 
+        fluid mechanics concepts using visuals, interactivity, and real-life examples. 
+        We believe that learning should be both informative and inspiring.
+      </p>
+
+      <!-- Down Arrow -->
+      <div class="scroll-down">
+        <i class="fa-solid fa-angles-down"></i>
+      </div>
+    </div>
+
+    <!-- Image beside text -->
+    <div class="image-box">
+      <img src="/image/c1.jpg" alt="Calphy Fluids Illustration" />
+    </div>
+  </div>
+</section>
+
+
 
   <!-- Goals Section -->
 <!-- Goals Section -->
@@ -64,8 +95,9 @@
     <div class="goal-card">
       <h2>Our Vision</h2>
       <p>
-        To be the leading platform in educational innovation where learning
-        fluid mechanics is intuitive, fun, and accessible to everyone.
+        To inspire learning through an interactive 
+        and accessible approach 
+        to fluid mechanics education.
       </p>
     </div>
 
@@ -178,6 +210,9 @@
     </div>
   </section>
 
+<!-- Back to Top Button -->
+<button id="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
+
   <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
@@ -230,40 +265,75 @@
   <p class="footer-copy">© 2025 Fluids Project. All Rights Reserved.</p>
 </footer>
   
+
 <script>
 const goalsContainer = document.querySelector('.goals-container');
 const learnMoreBtn = document.querySelector('.learn-more-btn');
+const scrollDownArrow = document.querySelector('.scroll-down');
+const aboutCalphySection = document.querySelector('#about-calphy');
+const goalsSection = document.querySelector('#goals');
 
-// Toggle spread when clicking the goals container
+// 1️⃣ Smooth scroll from "Learn More" to "About Calphy Fluids"
+learnMoreBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const offsetTop = aboutCalphySection.getBoundingClientRect().top + window.scrollY - 100;
+  window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+});
+
+// 2️⃣ When clicking arrow, scroll to goals and spread automatically
+scrollDownArrow.addEventListener('click', () => {
+  const offsetTop = goalsSection.getBoundingClientRect().top + window.scrollY - 100;
+
+  window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+  // Small delay so animation triggers after scroll
+  setTimeout(() => {
+    goalsContainer.classList.add('spread');
+  }, 800);
+});
+
+// 3️⃣ Toggle spread if user clicks the goals container manually
 goalsContainer.addEventListener('click', () => {
   goalsContainer.classList.toggle('spread');
 });
 
-// Smooth scroll to goals on Learn More click
-learnMoreBtn.addEventListener('click', (e) => {
-  e.preventDefault();
+const backToTopBtn = document.getElementById('back-to-top');
 
-  const goalsSection = document.querySelector('#goals');
-  const offsetTop = goalsSection.getBoundingClientRect().top + window.scrollY - 100;
-
-  // Smooth scroll
-  window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-
-  // Use IntersectionObserver to trigger spread when goals section is in view
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        goalsContainer.classList.add('spread');
-        obs.disconnect(); // Stop observing after spreading
-      }
-    });
-  }, { threshold: 0.5 }); // trigger when 50% of section is visible
-
-  observer.observe(goalsSection);
+// Show button after scrolling down 300px
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
 });
+
+// Smooth scroll to top with requestAnimationFrame for extra smoothness
+backToTopBtn.addEventListener('click', () => {
+  const start = window.scrollY;
+  const duration = 600; // duration in ms
+  let startTime = null;
+
+  function scrollStep(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = timestamp - startTime;
+    const ease = (t) => t < 0.5 
+        ? 2*t*t 
+        : -1 + (4 - 2*t)*t; // easeInOutQuad
+    const percent = Math.min(progress / duration, 1);
+    window.scrollTo(0, start * (1 - ease(percent)));
+    if (progress < duration) {
+      requestAnimationFrame(scrollStep);
+    }
+  }
+
+  requestAnimationFrame(scrollStep);
+});
+
+
+
 </script>
-
-
 
 </body>
 </html>
