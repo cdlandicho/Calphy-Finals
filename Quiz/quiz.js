@@ -60,9 +60,9 @@ const quizData = [
     answer: "Pascal"
   },
   {
-    question: "Fluid Mechanics is the study of the behavior of fluids at rest and in ____",
-    options: ["Pressure", "Motion", "Density", "Volume"],
-    answer: "Motion"
+    question: "A tank is filled with oil (𝜌=850kg/m³) to a depth of  1.50 m. What is the gauge pressure at the bottom? (𝑔=9.8 m/s²)",
+    options: ["8,500 Pa", "9,800 Pa", "12,495 Pa", "14,700 Pa"],
+    answer: "12,495 Pa"
   },
   {
     question: "Pressure is scalar quantity because it has magnitude but no _____",
@@ -119,9 +119,9 @@ const quizData = [
     answer: "Daniel Bernoulli"
   },
   {
-    question: "An object will either float or sink in a fluid depending on the relative _____ of the object and the fluid.",
-    options: ["Motion", "Tension", "Volume", "Density"],
-    answer: "Density"
+    question: "At what depth in freshwater (𝜌=1000kg/m³) will the gauge pressure be equal to 19,600 Pa?",
+    options: ["1.0 m", "1.5 m", "2.0 m", "3.0 m"],
+    answer: "2.0 m"
   },
   {
     question: "Compared to solids, fluids _____",
