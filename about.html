@@ -142,7 +142,7 @@
 
         <div class="box">
           <img src="/image/Kiel.png" alt="Image 3">
-          <p class="name">John Kiel Kondo</p>
+          <p class="name">John   Kiel   Kondo</p>
           <div class="social-icons">
             <a href="https://facebook.com" target="_blank"><img src="/image/fb.png" alt="Facebook"></a>
             <a href="https://instagram.com" target="_blank"><img src="/image/Ig.png" alt="Instagram"></a>
@@ -279,25 +279,44 @@ const learnMoreBtn = document.querySelector('.learn-more-btn');
 const scrollDownArrow = document.querySelector('.scroll-down');
 const aboutCalphySection = document.querySelector('#about-calphy');
 const goalsSection = document.querySelector('#goals');
+const backToTopBtn = document.getElementById('back-to-top');
+
+// Smooth scroll utility function
+function smoothScrollTo(target, duration = 800, offset = 100) {
+  const start = window.scrollY;
+  const end = target.getBoundingClientRect().top + start - offset;
+  const distance = end - start;
+  let startTime = null;
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+  }
+
+  function animate(currentTime) {
+    if (!startTime) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    if (progress < 1) requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+}
 
 // 1️⃣ Smooth scroll from "Learn More" to "About Calphy Fluids"
 learnMoreBtn.addEventListener('click', (e) => {
   e.preventDefault();
-
-  const offsetTop = aboutCalphySection.getBoundingClientRect().top + window.scrollY - 100;
-  window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  smoothScrollTo(aboutCalphySection, 1000, 100);
 });
 
 // 2️⃣ When clicking arrow, scroll to goals and spread automatically
 scrollDownArrow.addEventListener('click', () => {
-  const offsetTop = goalsSection.getBoundingClientRect().top + window.scrollY - 100;
+  smoothScrollTo(goalsSection, 1000, 100);
 
-  window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-
-  // Small delay so animation triggers after scroll
+  // Small delay so spread animation triggers after scroll
   setTimeout(() => {
     goalsContainer.classList.add('spread');
-  }, 800);
+  }, 900);
 });
 
 // 3️⃣ Toggle spread if user clicks the goals container manually
@@ -305,9 +324,7 @@ goalsContainer.addEventListener('click', () => {
   goalsContainer.classList.toggle('spread');
 });
 
-const backToTopBtn = document.getElementById('back-to-top');
-
-// Show button after scrolling down 300px
+// 4️⃣ Back to top button visibility and smooth scroll
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
     backToTopBtn.classList.add('show');
@@ -316,27 +333,27 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Smooth scroll to top with requestAnimationFrame for extra smoothness
 backToTopBtn.addEventListener('click', () => {
   const start = window.scrollY;
-  const duration = 600; // duration in ms
+  const duration = 600;
   let startTime = null;
 
-  function scrollStep(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const progress = timestamp - startTime;
-    const ease = (t) => t < 0.5 
-        ? 2*t*t 
-        : -1 + (4 - 2*t)*t; // easeInOutQuad
-    const percent = Math.min(progress / duration, 1);
-    window.scrollTo(0, start * (1 - ease(percent)));
-    if (progress < duration) {
-      requestAnimationFrame(scrollStep);
-    }
+  function easeInOutQuad(t) {
+    return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
   }
 
-  requestAnimationFrame(scrollStep);
+  function animate(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const timeElapsed = timestamp - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    window.scrollTo(0, start * (1 - easeInOutQuad(progress)));
+    if (progress < 1) requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
 });
+</script>
+
 
 
 
