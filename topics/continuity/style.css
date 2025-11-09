@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family:"Nunito",sans-serif;
 }
 
 body {
@@ -432,4 +432,175 @@ body {
 @keyframes flow {
   from { transform: translateX(-20px); }
   to { transform: translateX(120%); }
+}
+/* --- Hoverable Application Cards (Glass + Animated Gradient Overlay) --- */
+.application-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
+  margin-top: 40px;
+}
+
+.app-card {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.app-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  transition: 0.3s ease;
+}
+
+.app-card h3 {
+  color: #aee4ff;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  font-family: 'Pacifico', cursive;
+}
+
+.app-card p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+/* Hover state with gradient reveal */
+.app-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.25);
+}
+
+.app-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(33,111,226,0.85), rgba(0,200,255,0.7), rgba(33,111,226,0.85));
+  background-size: 400% 400%;
+  border-radius: 20px;
+  opacity: 0;
+  transition: 0.4s ease;
+  z-index: 1;
+  animation: gradientShift 8s ease infinite;
+}
+
+.app-card:hover::before {
+  opacity: 1;
+}
+
+.app-card:hover img {
+  transform: translateY(-6px);
+}
+
+.app-card:hover p {
+  opacity: 1;
+  z-index: 2;
+  position: relative;
+}
+
+/* Animated gradient motion */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Application Cards */
+.application-grid {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  flex-wrap: wrap;
+}
+
+.app-card {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s ease;
+}
+
+.app-card img.app-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.app-card .hover-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(33,111,226,0.85), rgba(0,200,255,0.7), rgba(33,111,226,0.85));
+  color: white;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.app-card .hover-info h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.app-card .hover-info p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Hover Effect */
+.app-card:hover img.app-icon {
+  transform: translateY(0); /* optional: keep it in place */
+  opacity: 0.3;             /* dim the icon */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+.app-card:hover .hover-info {
+  opacity: 1;
+}
+
+.app-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.25);
 }

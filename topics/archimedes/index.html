@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Archimedes' Principle - Fluids</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,11 +19,23 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <h1 class="topic-title">Archimedes' Principle</h1>
-    <p class="topic-subtitle">Understanding Buoyancy and Floating Forces</p>
+    <p class="topic-subtitle">The Science Behind Floating and Sinking</p>
     <p class="topic-description">
-      Archimedes' Principle states that any object fully or partially submerged in a fluid
-      is pushed upward by a buoyant force equal to the weight of the fluid displaced.
-      This principle explains why objects float or sink depending on their density.
+      Archimedes’ Principle is one of the fundamental laws of fluid mechanics. It states that any object 
+      fully or partially submerged in a fluid experiences an upward force—called <strong>buoyant force</strong>—
+      equal to the weight of the fluid it displaces. This principle helps explain why ships float, 
+      balloons rise, and icebergs only partially emerge above the water’s surface.
+    </p>
+  </section>
+
+  <!-- Historical Context -->
+  <section class="history-section">
+    <h2>Did You Know?</h2>
+    <p>
+      The principle was discovered by the Greek mathematician and inventor <strong>Archimedes of Syracuse</strong> 
+      in the 3rd century BCE. Legend says he realized this while stepping into a bath and noticing the 
+      water level rise. Excited by his discovery, he ran through the streets shouting “<em>Eureka!</em>” 
+      (meaning “I have found it!”).
     </p>
   </section>
 
@@ -32,11 +48,57 @@
       <div class="info-box">
         <h2>Key Concepts</h2>
         <ul class="concept-list">
-          <li><strong>Buoyant Force:</strong> Upward force exerted by a fluid.</li>
-          <li><strong>Displacement:</strong> Amount of fluid pushed aside by the object.</li>
-          <li><strong>Floating:</strong> Occurs when buoyant force equals an object's weight.</li>
-          <li><strong>Sinking:</strong> Happens when weight is greater than buoyant force.</li>
+          <li><strong>Buoyant Force:</strong> The upward force exerted by a fluid on a submerged object.</li>
+          <li><strong>Displacement:</strong> The amount of fluid pushed aside by the object.</li>
+          <li><strong>Floating:</strong> Occurs when buoyant force equals or exceeds the object’s weight.</li>
+          <li><strong>Sinking:</strong> Happens when the object’s weight is greater than the buoyant force.</li>
+          <li><strong>Equilibrium:</strong> Achieved when both forces balance perfectly, causing the object to stay suspended in the fluid.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real-World Applications -->
+  <section class="applications-section">
+    <h2>Applications in the Real World</h2>
+    <p class="app-subtitle">Hover on each icon to reveal how Archimedes’ Principle applies in real life.</p>
+
+    <div class="applications-grid">
+      <!-- Ships / Submarines -->
+      <div class="app-card">
+        <img src="../asset-topics/ship-icon.png" alt="Ship Icon" class="app-icon">
+        <div class="hover-info">
+          <h3 class="hover-title">Ships & Submarines</h3>
+          <p>
+            Large ships float because their average density, including the air inside, 
+            is less than that of water. Submarines adjust their buoyancy by controlling 
+            the water in their ballast tanks to dive or rise.
+          </p>
+        </div>
+      </div>
+
+      <!-- Hot Air Balloon -->
+      <div class="app-card">
+        <img src="../asset-topics/balloon-icon.png" alt="Hot Air Balloon Icon" class="app-icon">
+        <div class="hover-info">
+          <h3 class="hover-title">Hot-Air Balloons</h3>
+          <p>
+            Hot air inside the balloon is less dense than the surrounding cooler air, 
+            allowing it to rise — just like objects float in water when they are less dense.
+          </p>
+        </div>
+      </div>
+
+      <!-- Iceberg -->
+      <div class="app-card">
+        <img src="../asset-topics/iceberg-icon.png" alt="Iceberg Icon" class="app-icon">
+        <div class="hover-info">
+          <h3 class="hover-title">Icebergs</h3>
+          <p>
+            Ice is slightly less dense than liquid water, so only about 10% of an iceberg 
+            is visible above the surface — the rest stays submerged.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -58,25 +120,21 @@
   <section class="calculator-section">
     <h2>Calculate Buoyant Force</h2>
     <div class="calculator">
-
       <div class="input-group">
         <label for="density">Fluid Density (ρ)</label>
         <input type="number" id="density" placeholder="e.g., 1000">
         <span class="unit">kg/m³</span>
       </div>
-
       <div class="input-group">
         <label for="volume">Displaced Volume (V)</label>
         <input type="number" id="volume" placeholder="e.g., 0.5">
         <span class="unit">m³</span>
       </div>
-
       <div class="input-group">
         <label for="gravity">Gravity (g)</label>
         <input type="number" id="gravity" value="9.8" step="0.1">
         <span class="unit">m/s²</span>
       </div>
-
       <button onclick="calculate()" class="calc-button">Calculate Force</button>
 
       <div class="result-display" id="resultBox">
@@ -91,24 +149,23 @@
       <p class="example-calc">F<sub>b</sub> = 1000 × 9.8 × 0.5 = <strong>4900 N</strong></p>
     </div>
   </section>
-  
+
+  <!-- Airfoil Section -->
   <section class="airfoil-visual-section">
     <h2>Airflow Around an Airplane Wing</h2>
     <p class="airfoil-description">
-    Air moves faster over the curved top of the wing, causing lower pressure above and 
-    higher pressure below. This pressure difference creates lift.
-  </p>
-  
-  <div class="airfoil-scene">
-    <div class="wing-shape" id="wing"></div>
-    
-    <!-- Airflow lines -->
-    <div class="flow-line line1"></div>
-    <div class="flow-line line2"></div>
-    <div class="flow-line line3"></div>
-    <div class="flow-line line4"></div>
-  </div>
-</section>
+      Archimedes’ Principle isn’t limited to water—air acts as a fluid too. 
+      Air moves faster over the curved top of an airplane wing, creating lower pressure above 
+      and higher pressure below, producing <strong>lift</strong>.
+    </p>
+    <div class="airfoil-scene">
+      <div class="wing-shape" id="wing"></div>
+      <div class="flow-line line1"></div>
+      <div class="flow-line line2"></div>
+      <div class="flow-line line3"></div>
+      <div class="flow-line line4"></div>
+    </div>
+  </section>
 
   <!-- Interactive Floating Simulation -->
   <section class="float-sim-section">
@@ -125,14 +182,11 @@
         <label>Object Density (kg/m³)</label>
         <input type="number" id="objectDensity" placeholder="e.g., 500">
       </div>
-
       <div class="input-group">
         <label>Fluid Density (kg/m³)</label>
         <input type="number" id="fluidDensity" placeholder="e.g., 1000">
       </div>
-
       <button onclick="checkFloat()" class="calc-button">Simulate</button>
-
       <div class="float-result" id="floatResult">—</div>
     </div>
   </section>
