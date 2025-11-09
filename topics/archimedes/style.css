@@ -1,8 +1,9 @@
+/* --- Fonts --- */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Poppins",sans-serif;
+  font-family:"Nunito",sans-serif;
 }
 
 body{
@@ -11,7 +12,7 @@ body{
   overflow-x:hidden;
 }
 
-/* BACK BUTTON */
+/* Back Button */
 .back-button{
   position:fixed;
   top:20px;
@@ -24,13 +25,14 @@ body{
   backdrop-filter:blur(8px);
   transition:.3s;
   border:1px solid rgba(255,255,255,0.4);
+  z-index: 1000;
 }
 .back-button:hover{
   transform:translateY(-3px);
   background:rgba(255,255,255,0.35);
 }
 
-/* PAGE LAYOUT */
+/* Page Layout */
 .topic-container{
   max-width:1150px;
   margin:auto;
@@ -53,13 +55,13 @@ body{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* HERO */
+/* Hero */
 .hero-section{text-align:center;}
 .topic-title{font-size:3rem;font-weight:800;}
-.topic-subtitle{opacity:.9;margin-top:5px;}
+.topic-subtitle{opacity:.9;margin-top:5px;font-weight:600;}
 .topic-description{max-width:850px;margin:auto;margin-top:15px;opacity:.9;line-height:1.7;}
 
-/* VISUAL + TEXT */
+/* Visual + Text */
 .content-grid{
   display:flex;
   gap:45px;
@@ -81,7 +83,7 @@ body{
   font-size:.8rem;
 }
 
-/* FORMULA */
+/* Formula */
 .formula-main{
   font-size:2.7rem;
   background:rgba(255,255,255,0.15);
@@ -102,7 +104,7 @@ body{
   border-radius:8px;
 }
 
-/* CALCULATOR */
+/* Calculator */
 .input-group{margin-bottom:20px;position:relative;}
 .input-group input{
   width:100%;
@@ -154,14 +156,98 @@ body{
   border-radius:10px;
 }
 
-/* INTERACTIVE FLOAT SIMULATION */
-.float-sim-section{text-align:center;}
+/* Hover Cards - Applications */
+.applications-grid {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  flex-wrap: wrap;
+  z-index: 10;
+  position: relative;
+}
+
+.app-card {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.app-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+.app-icon {
+  width: 100px;
+  height: 100px;
+  opacity: 0.9;
+  transition: 0.3s ease;
+}
+
+/* Hover Info Overlay - Fluid Animated Background */
+.hover-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(33,111,226,0.85), rgba(0,200,255,0.7), rgba(33,111,226,0.85));
+  background-size: 400% 400%;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100%;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+  animation: gradientShift 8s ease infinite;
+  z-index: 10;
+}
+.app-card:hover .hover-info {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hover-info .hover-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #fff7;
+}
+
+/* --- Interactive Floating Simulation --- */
+.float-sim-section{
+  text-align:center;
+  position: relative;
+  z-index: 50;
+}
 
 .sim-container{
   position:relative;
   width:250px;
   height:260px;
   margin:30px auto;
+  z-index: 50;
 }
 
 .water{
@@ -189,6 +275,7 @@ body{
   left:50%;
   transform:translateX(-50%);
   transition:all .8s ease;
+  z-index: 55;
 }
 
 .object.float{
@@ -212,11 +299,14 @@ body{
   background:rgba(0,0,0,0.45);
   font-size:1.3rem;
   font-weight:600;
+  z-index: 50;
 }
 
-/* AIRFOIL VISUAL */
+/* --- Airfoil Visual --- */
 .airfoil-visual-section {
   text-align: center;
+  position: relative;
+  z-index: 50;
 }
 
 .airfoil-description {
@@ -232,9 +322,9 @@ body{
   height: 180px;
   margin: auto;
   overflow: visible;
+  z-index: 50;
 }
 
-/* Wing Shape */
 .wing-shape {
   width: 260px;
   height: 70px;
@@ -245,6 +335,8 @@ body{
   position: relative;
   top: 45px;
   backdrop-filter: blur(8px);
+  z-index: 50;
+  transition: transform 1.2s ease, box-shadow 1.2s ease;
 }
 
 /* Air Flow Lines */
@@ -255,6 +347,7 @@ body{
   background: rgba(255,255,255,0.6);
   border-radius: 2px;
   animation: airflow 2.8s linear infinite;
+  z-index: 50;
 }
 
 .line1 { top: 10px; animation-delay: 0s; }
@@ -268,18 +361,12 @@ body{
   100% { transform: translateX(120%); opacity: 0; }
 }
 
-/* Lift Animation States */
-#wing {
-  transition: transform 1.2s ease, box-shadow 1.2s ease;
-}
-
-/* When object floats */
+/* Lift states */
 .lift-up {
   transform: translateY(-50px) rotate(-5deg);
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
 }
 
-/* When object sinks (default) */
 .lift-reset {
   transform: translateY(0) rotate(0);
   box-shadow: none;
