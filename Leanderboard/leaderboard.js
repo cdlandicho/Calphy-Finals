@@ -4,13 +4,56 @@ const leaderboardTable = document.getElementById('leaderboard-table');
 // Load and display leaderboard from Supabase
 async function loadLeaderboard() {
   try {
-    // Fetch scores from Supabase using fluids_leaderboard table
-    const { data, error } = await supabase
+    // First, try to join with profiles table using Supabase's join syntax
+    // This works if there's a foreign key relationship
+    let { data, error } = await supabase
       .from('fluids_leaderboard')
-      .select('*')
+      .select('*, profiles(username)')
       .order('score', { ascending: false })
       .order('created_at', { ascending: false })
       .limit(100);
+    
+    // If join fails (no foreign key relationship), fetch separately and merge
+    if (error) {
+      console.warn('Join failed, fetching separately:', error.message);
+      
+      // Fetch leaderboard data
+      const { data: leaderboardData, error: leaderboardError } = await supabase
+        .from('fluids_leaderboard')
+        .select('*')
+        .order('score', { ascending: false })
+        .order('created_at', { ascending: false })
+        .limit(100);
+      
+      if (leaderboardError) {
+        throw leaderboardError;
+      }
+      
+      // Fetch all profiles
+      const { data: profilesData, error: profilesError } = await supabase
+        .from('profiles')
+        .select('user_id, username');
+      
+      if (profilesError) {
+        console.warn('Could not fetch profiles:', profilesError.message);
+      }
+      
+      // Create a map of user_id to username
+      const usernameMap = {};
+      if (profilesData) {
+        profilesData.forEach(profile => {
+          usernameMap[profile.user_id] = profile.username;
+        });
+      }
+      
+      // Merge username into leaderboard data
+      data = leaderboardData.map(entry => ({
+        ...entry,
+        profiles: usernameMap[entry.user_id] ? { username: usernameMap[entry.user_id] } : null
+      }));
+      
+      error = null;
+    }
 
     if (error) {
       console.error('Error loading scores from Supabase:', error);
@@ -60,10 +103,13 @@ function displayScores(scores) {
     const topClass = rank === 1 ? 'top-1' : rank === 2 ? 'top-2' : rank === 3 ? 'top-3' : '';
     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : '';
     
-    // Display user_id (shortened) since we don't have username in database
+    // Get username from profiles table, fallback to user_id if not available
     let displayName = 'Player';
-    if (entry.user_id) {
-      // Display shortened user_id as identifier
+    if (entry.profiles && entry.profiles.username) {
+      // Use username from profiles table
+      displayName = entry.profiles.username;
+    } else if (entry.user_id) {
+      // Fallback to shortened user_id if username not found
       displayName = `Player ${entry.user_id.substring(0, 8)}`;
     }
     

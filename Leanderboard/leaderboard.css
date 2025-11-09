@@ -11,14 +11,12 @@
 
 body {
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: url('/image/CALPH-bg.gif') no-repeat center center fixed;
+  background: url('../image/CALPH-bg.gif') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
-
-/* Navbar styles are inherited from quiz.css */
 
 /* Leaderboard Wrapper */
 .leaderboard-wrapper {

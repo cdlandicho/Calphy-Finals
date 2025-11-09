@@ -207,7 +207,7 @@ const quizData = [
   },
 ];
 
-// === VARIABLES ===
+// VARIABLES
 let currentQuestion = 0;
 let score = 0;
 let userAnswers = Array(quizData.length).fill(null);
@@ -234,7 +234,7 @@ startBtn.onclick = () => {
 };
 
 
-// === SHOW QUESTION ===
+// SHOW QUESTION
 function showQuestion() {
   const q = quizData[currentQuestion];
   questionText.textContent = q.question;
@@ -267,7 +267,7 @@ function showQuestion() {
   updateProgressBar();
 }
 
-// === HANDLE ANSWER ===
+// HANDLE ANSWER
 function handleAnswer(selectedOption, btn) {
   if (userAnswers[currentQuestion] !== null) return;
   userAnswers[currentQuestion] = selectedOption;
@@ -286,7 +286,7 @@ function handleAnswer(selectedOption, btn) {
   if (selectedOption === correctAnswer) score++;
 }
 
-// === NEXT BUTTON ===
+// NEXT BUTTON
 nextBtn.onclick = () => {
   if (currentQuestion < quizData.length - 1) {
     currentQuestion++;
@@ -296,7 +296,7 @@ nextBtn.onclick = () => {
   }
 };
 
-// === PREVIOUS BUTTON ===
+// PREVIOUS BUTTON
 prevBtn.onclick = () => {
   if (currentQuestion > 0) {
     currentQuestion--;
@@ -304,7 +304,7 @@ prevBtn.onclick = () => {
   }
 };
 
-// === SHOW RESULTS ===
+// SHOW RESULTS
 function showResults() {
   quizWrapper.style.display = "none";
   resultWrapper.style.display = "flex";
@@ -320,7 +320,7 @@ function showResults() {
   saveScoreToLeaderboard();
 }
 
-// === GENERATE UUID FROM USERNAME ===
+// GENERATE UUID FROM USERNAME
 // Creates a deterministic UUID v5 from username
 function generateUUIDFromUsername(username) {
   // Simple UUID v4-like generation from username hash
@@ -341,7 +341,7 @@ function generateUUIDFromUsername(username) {
   ].join('-');
 }
 
-// === SAVE SCORE TO LEADERBOARD ===
+// SAVE SCORE TO LEADERBOARD
 async function saveScoreToLeaderboard() {
   const scoreEntry = {
     username: username,
@@ -365,7 +365,6 @@ async function saveScoreToLeaderboard() {
       // User is not authenticated - cannot save score
       console.warn('User not authenticated. Score will not be saved.');
       console.warn('Note: User must be logged in to save scores to Supabase.');
-      alert('You must be logged in to save your score. Please sign in and try again.');
       return;
     }
     
@@ -374,7 +373,7 @@ async function saveScoreToLeaderboard() {
     usernameMap[userId] = username;
     localStorage.setItem('usernameMap', JSON.stringify(usernameMap));
     
-    // Submit to Supabase - using fluids_leaderboard table
+    // Submit to Supabase using fluids_leaderboard table
     const { data, error } = await supabase
       .from('fluids_leaderboard')
       .insert([
@@ -389,22 +388,19 @@ async function saveScoreToLeaderboard() {
     if (error) {
       console.error('Error saving score to Supabase:', error);
       console.error('Error details:', error.message);
-      alert('Failed to save score. Please try again.');
     } else {
       console.log('Score saved to Supabase successfully!');
       console.log('Saved data:', data);
       console.log('User ID:', userId);
       console.log('Username:', username);
       console.log('Score:', scoreEntry.score);
-      alert(`Score saved! Check the browser console for details.`);
     }
   } catch (err) {
     console.error('Error connecting to Supabase:', err);
-    alert('Failed to connect to Supabase. Please check your connection and try again.');
   }
 }
 
-// === PROGRESS BAR ===
+// PROGRESS BAR 
 function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   if (progressBar) {
@@ -413,7 +409,7 @@ function updateProgressBar() {
   }
 }
 
-// === RESTART QUIZ ===
+// RESTART QUIZ
 restartBtn.onclick = () => {
   resultWrapper.style.display = "none";
   introCard.style.display = "flex";
@@ -422,20 +418,20 @@ restartBtn.onclick = () => {
   userAnswers = Array(quizData.length).fill(null);
 };
 
-// === REVIEW QUIZ ===
+// REVIEW QUIZ
 const reviewBtn = document.getElementById("review-btn");
 const reviewWrapper = document.getElementById("review-wrapper");
 const reviewContent = document.getElementById("review-content");
 const backToResultBtn = document.getElementById("back-to-result-btn");
 
 reviewBtn.onclick = () => {
-  resultWrapper.style.display = "none";    // hide score screen
-  reviewWrapper.style.display = "flex";    // show review screen
+  resultWrapper.style.display = "none";
+  reviewWrapper.style.display = "flex";
   generateReview();
 };
 
 function generateReview() {
-  reviewContent.innerHTML = ""; // clear previous content
+  reviewContent.innerHTML = "";
 
   quizData.forEach((q, index) => {
     const userAnswer = userAnswers[index];
@@ -457,6 +453,6 @@ function generateReview() {
 }
 
 backToResultBtn.onclick = () => {
-  reviewWrapper.style.display = "none";   // hide review screen
-  resultWrapper.style.display = "flex";   // show score screen
+  reviewWrapper.style.display = "none";
+  resultWrapper.style.display = "flex";
 };
