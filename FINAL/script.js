@@ -112,3 +112,103 @@ window.addEventListener('load', () => {
     aboutBoxes.addEventListener('mouseenter', stopAutoScroll);
     aboutBoxes.addEventListener('mouseleave', animateScroll);
 });
+
+// Inject chatbot HTML if not already loaded
+if (!document.querySelector("[data-chatbot-loaded]")) {
+  document.body.setAttribute("data-chatbot-loaded", "true");
+
+  const placeholder = document.getElementById("chatbot-placeholder");
+  placeholder.innerHTML = `
+    <button id="chatbot-toggle">💬 <span id="chatbot-badge">1</span></button>
+    <div id="chatbot-container">
+      <div id="chatbot-header">Fluids Chatbot</div>
+      <div id="chatbot-messages"></div>
+      <div id="chatbot-options"></div>
+    </div>
+  `;
+
+  initChatbot();
+}
+
+function initChatbot() {
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotOptions = document.getElementById("chatbot-options");
+  const chatbotBadge = document.getElementById("chatbot-badge");
+
+  let chatbotOpened = false;
+
+  const conversation = {
+    start: {
+      text: "Hello! Welcome to Fluids! How can I assist you today?",
+      options: ["About Fluids", "Topics", "Quiz"]
+    },
+    "About Fluids": {
+      text: "Fluids is an interactive platform to explore fluid mechanics through lessons, topics, and simulations.",
+      options: ["Topics", "Back to main menu"]
+    },
+    Topics: {
+      text: "We cover: Archimedes Principle, Bernoulli's Principle, Fluid Pressure, and Continuity Principle.",
+      options: ["About Fluids", "Quiz", "Back to main menu"]
+    },
+    Quiz: {
+      text: "Test your knowledge with our interactive quizzes!",
+      options: ["Topics", "Back to main menu"]
+    },
+    backToMenu: {
+      text: "Welcome back! How can I help you today?",
+      options: ["About Fluids", "Topics", "Quiz"]
+    }
+  };
+
+  let currentNode = "start";
+
+  chatbotToggle.addEventListener("click", () => {
+    const isHidden = chatbotContainer.style.display === "none" || chatbotContainer.style.display === "";
+    if (isHidden) {
+      chatbotContainer.style.display = "flex";
+      chatbotBadge.style.display = "none";
+      if (!chatbotOpened) {
+        chatbotMessages.innerHTML = "";
+        displayMessage("bot", conversation.start.text);
+        displayOptions(conversation.start.options);
+        chatbotOpened = true;
+      }
+    } else {
+      chatbotContainer.style.display = "none";
+    }
+  });
+
+  function displayMessage(sender, text) {
+    const message = document.createElement("div");
+    message.classList.add("message", sender);
+    message.textContent = text;
+    chatbotMessages.appendChild(message);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function displayOptions(options) {
+    chatbotOptions.innerHTML = "";
+    options.forEach(option => {
+      const button = document.createElement("button");
+      button.classList.add("option");
+      button.textContent = option;
+      button.addEventListener("click", () => handleOption(option));
+      chatbotOptions.appendChild(button);
+    });
+  }
+
+  function handleOption(option) {
+    displayMessage("user", option);
+    if (option === "Back to main menu") currentNode = "backToMenu";
+    else if (conversation[option]) currentNode = option;
+
+    setTimeout(() => {
+      displayMessage("bot", conversation[currentNode].text);
+      displayOptions(conversation[currentNode].options);
+    }, 500);
+  }
+
+  chatbotContainer.style.display = "none";
+}

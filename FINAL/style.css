@@ -454,3 +454,128 @@ body, html {
   margin-right: 6px;
   font-size: 0.9rem;
 }
+/* Chatbot Toggle Button */
+#chatbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #00a8f3; /* Fluids blue */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+#chatbot-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Badge */
+#chatbot-badge {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: white;
+  color: #00a8f3;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chatbot Container */
+#chatbot-container {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  height: 450px;
+  background: rgba(0,168,243,0.95); /* Fluids blue background */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+  border: 1px solid white;
+  z-index: 9999;
+}
+
+/* Header */
+#chatbot-header {
+  background-color: white;
+  color: #00a8f3;
+  padding: 15px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Messages */
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 14px;
+}
+
+.bot {
+  background: white;
+  color: #00a8f3;
+  align-self: flex-start;
+}
+
+.user {
+  background: #003b73;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Options buttons */
+#chatbot-options {
+  padding: 10px;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.option {
+  background-color: white;
+  color: #00a8f3;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.option:hover {
+  background-color: #e0f7ff;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
