@@ -426,3 +426,153 @@ body {
   font-size: 0.95rem;
   opacity: 0.8;
 }
+
+/* Applications Section */
+.applications-section {
+  text-align: center;
+}
+
+.applications-section h2 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  opacity: 0.85;
+  margin-bottom: 40px;
+}
+
+/* EXAMPLES CARDS SECTION */
+.examples-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  padding-bottom: 150px; /* space below cards */
+}
+
+.examples-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
+  
+  /* Unified glassy border */
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  
+  /* Nice soft shadow for floating effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Card Styles */
+.app-card {
+  width: 220px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.app-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back Faces */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  color: white;
+}
+
+/* Fluid blue animated front */
+.fluid-bg {
+  background: linear-gradient(120deg, #4dabf7, #1e90ff, #74c0fc, #4dabf7);
+  background-size: 300% 300%;
+  animation: fluidMotion 6s ease-in-out infinite;
+}
+
+@keyframes fluidMotion {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Back Face Scrollable */
+.card-back {
+  background: rgba(255,255,255,0.15);
+  transform: rotateY(180deg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.4) transparent;
+}
+
+.card-back::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-back::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.4);
+  border-radius: 10px;
+}
+
+.card-back h3 {
+  color: #a5d8ff;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.card-back p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Card icon on front */
+.card-front .card-icon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+/* Formula typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.formula-main.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #fff;
+  animation: typing 2s steps(30) 1, blink 0.75s step-end infinite alternate;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
