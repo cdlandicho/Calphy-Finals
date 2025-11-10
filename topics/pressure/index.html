@@ -49,27 +49,26 @@
     <div class="formula-container">
       <h2>Hydrostatic Pressure Formula</h2>
       <div class="formula-display">
-        <div class="formula-main">P = ρ × g × h</div>
+        <div id="typedFormula" class="formula-main"></div>
       </div>
       <div class="formula-variables">
-        <div class="variable">
+        <div class="variable" data-formula="P = ρ × g × h">
           <span class="var-symbol">P</span>
           <span class="var-desc">Pressure (Pa)</span>
         </div>
-        <div class="variable">
+        <div class="variable" data-formula="P = ρ × g × h">
           <span class="var-symbol">ρ</span>
           <span class="var-desc">Fluid Density (kg/m³)</span>
         </div>
-        <div class="variable">
+        <div class="variable" data-formula="P = ρ × g × h">
           <span class="var-symbol">g</span>
           <span class="var-desc">Gravity (9.81 m/s²)</span>
         </div>
-        <div class="variable">
+        <div class="variable" data-formula="P = ρ × g × h">
           <span class="var-symbol">h</span>
           <span class="var-desc">Depth/Height (m)</span>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Calculator + Interactive Section -->
@@ -127,6 +126,50 @@
 
     </div>
   </section>
+
+  <!-- EXAMPLES CARDS SECTION -->
+<section class="examples-section">
+  <div class="examples-wrapper">
+    <!-- CARD 1 -->
+    <div class="app-card">
+      <div class="card-inner">
+        <div class="card-front fluid-bg">
+          <img src="../asset-topics/dam.png" alt="Dam Icon" class="card-icon">
+        </div>
+        <div class="card-back">
+          <h3>Pressure in Dams</h3>
+          <p>Dams are built thicker at the bottom because water pressure increases with depth, pushing harder on the lower parts of the structure.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="app-card">
+      <div class="card-inner">
+        <div class="card-front fluid-bg">
+          <img src="../asset-topics/straw.png" alt="Straw Icon" class="card-icon">
+        </div>
+        <div class="card-back">
+          <h3>Pressure Difference</h3>
+          <p>When you suck through a straw, air pressure outside the glass pushes the liquid up into your mouth — that’s fluid pressure at work!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="app-card">
+      <div class="card-inner">
+        <div class="card-front fluid-bg">
+          <img src="../asset-topics/syringe.png" alt="Syringe Icon" class="card-icon">
+        </div>
+        <div class="card-back">
+          <h3>Pressure Application</h3>
+          <p>When you push the plunger, you increase the pressure inside, forcing the liquid out through the needle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 

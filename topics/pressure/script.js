@@ -46,8 +46,22 @@ function calculatePressure() {
   updateWaterLevel();
 }
 
-// ---------------- BUTTON EVENT LISTENER ---------------- //
-const calcBtn = document.getElementById("calcBtn");
-if (calcBtn) {
-  calcBtn.addEventListener("click", calculatePressure);
-}
+// ---------------- AUTO FORMULA TYPING ---------------- //
+document.addEventListener("DOMContentLoaded", () => {
+  const formulaDisplay = document.getElementById("typedFormula");
+  const formula = "P = ρ × g × h";
+  let i = 0;
+
+  function typeFormula() {
+    if (i < formula.length) {
+      formulaDisplay.textContent += formula.charAt(i);
+      i++;
+      setTimeout(typeFormula, 100);
+    } else {
+      formulaDisplay.classList.add("typing");
+    }
+  }
+
+  formulaDisplay.textContent = "";
+  typeFormula();
+});
