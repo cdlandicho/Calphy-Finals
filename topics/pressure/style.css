@@ -371,7 +371,67 @@ body {
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
+
+/* Align calculator and interactive model side-by-side */
+.calc-interact-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.pressure-visual-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 280px;
+  padding: 25px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.pressure-chamber {
+  position: relative;
+  width: 120px;
+  height: 200px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  margin: 20px auto;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#piston {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 3px solid #66ccff;
+  transition: top 0.4s ease;
+}
+
+#fluid {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, #3b8aff, #0056cc);
+  transition: height 0.4s ease, background 0.4s ease;
+}
+
+#pressureLabel {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #a8d0ff;
+}
+
 
 .pressure-model {
   background: rgba(255,255,255,0.1);
@@ -560,19 +620,56 @@ body {
   object-fit: contain;
 }
 
-/* Formula typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* --- Interactive Fluid Pressure Model --- */
+.pressure-visual-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 280px;
+  padding: 25px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #fff;
 }
 
-.formula-main.typing {
+.pressure-chamber {
+  position: relative;
+  width: 120px;
+  height: 200px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  margin: 20px auto;
   overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid #fff;
-  animation: typing 2s steps(30) 1, blink 0.75s step-end infinite alternate;
+  background: rgba(0, 0, 0, 0.2);
 }
 
-@keyframes blink {
-  50% { border-color: transparent; }
+#piston {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 3px solid #ccc;
+  border-radius: 5px;
+  transition: top 0.6s ease;
+  z-index: 10;
+}
+
+#fluid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(180deg, #66ccff, #99ddff);
+  transition: height 0.6s ease, background 0.4s ease;
+  border-radius: 0 0 10px 10px;
+}
+
+#pressureLabel {
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #a5d8ff;
 }
