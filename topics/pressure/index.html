@@ -44,31 +44,129 @@
     </div>
   </section>
 
-  <!-- Formula Section -->
+    <!-- Basic Fluid Pressure Section -->
+  <section class="basic-pressure-section">
+    <div class="formula-container">
+      <h2>Fluid Pressure</h2>
+      <p class="topic-description" style="max-width:800px; margin: 0 auto 30px; text-align:center;">
+        <strong>Fluid Pressure</strong> is the amount of force exerted by a fluid on a surface per unit area. 
+        It determines how strongly a fluid pushes against walls or objects in contact with it.
+      </p>
+
+      <div class="formula-display">
+        <div id="typedFormulaBasic" class="formula-main"></div>
+      </div>
+
+      <div class="formula-variables">
+        <div class="variable">
+          <span class="var-symbol">P</span>
+          <span class="var-desc">Pressure (Pascal, Pa)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">F</span>
+          <span class="var-desc">Force applied (Newton, N)</span>
+        </div>
+        <div class="variable">
+          <span class="var-symbol">A</span>
+          <span class="var-desc">Surface area (m²)</span>
+        </div>
+      </div>
+
+      <div class="example-box" style="margin-top:40px;">
+        <h3>Example</h3>
+        <p>If a force of 100 N acts on an area of 2 m²:</p>
+        <p class="example-calc">P = 100 / 2 = 50 Pa</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fluid Pressure Calculator Section -->
+<section class="calculator-section">
+  <div class="calc-interact-layout">
+    
+    <!-- Calculator -->
+    <div class="calculator-wrapper">
+      <h2>Calculate Fluid Pressure (P = F / A)</h2>
+
+      <div class="calculator">
+        <div class="input-group">
+          <label for="force">Force (F)</label>
+          <input type="number" id="force" placeholder="e.g., 200" step="0.01">
+          <span class="unit">N</span>
+        </div>
+
+        <div class="input-group">
+          <label for="area">Area (A)</label>
+          <input type="number" id="area" placeholder="e.g., 4" step="0.01">
+          <span class="unit">m²</span>
+        </div>
+
+        <button onclick="calculateBasicPressure()" class="calc-button">Calculate Pressure</button>
+
+        <div class="result-display" id="resultBoxBasic">
+          <div class="result-label">Fluid Pressure:</div>
+          <div class="result-value" id="resultBasic">—</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <h3>Try it Yourself</h3>
+        <p>Enter a force and area to find the resulting fluid pressure using <strong>P = F / A</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Interactive Model for Basic Fluid Pressure -->
+    <div class="pressure-visual-container">
+      <h3>Interactive Model</h3>
+      <div class="pressure-chamber">
+        <div id="piston"></div>
+        <div id="fluid"></div>
+      </div>
+      <div id="pressureLabel">Pressure level: —</div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Hydrostatic Pressure Formula Section -->
   <section class="formula-section">
     <div class="formula-container">
-      <h2>Hydrostatic Pressure Formula</h2>
+      <h2>Hydrostatic Pressure</h2>
+      <p class="topic-description" style="max-width:800px; margin: 0 auto 30px; text-align:center;">
+        <strong>Hydrostatic Pressure</strong> is the pressure exerted by a fluid at rest due to the force of gravity. 
+        It increases with depth because the weight of the fluid above exerts a greater downward force on the fluid below. 
+        The deeper you go, the greater the pressure.
+      </p>
+
       <div class="formula-display">
         <div id="typedFormula" class="formula-main"></div>
       </div>
+
       <div class="formula-variables">
-        <div class="variable" data-formula="P = ρ × g × h">
+        <div class="variable">
           <span class="var-symbol">P</span>
-          <span class="var-desc">Pressure (Pa)</span>
+          <span class="var-desc">Pressure (Pascal, Pa)</span>
         </div>
-        <div class="variable" data-formula="P = ρ × g × h">
+        <div class="variable">
           <span class="var-symbol">ρ</span>
           <span class="var-desc">Fluid Density (kg/m³)</span>
         </div>
-        <div class="variable" data-formula="P = ρ × g × h">
+        <div class="variable">
           <span class="var-symbol">g</span>
-          <span class="var-desc">Gravity (9.81 m/s²)</span>
+          <span class="var-desc">Acceleration due to Gravity (9.81 m/s²)</span>
         </div>
-        <div class="variable" data-formula="P = ρ × g × h">
+        <div class="variable">
           <span class="var-symbol">h</span>
-          <span class="var-desc">Depth/Height (m)</span>
+          <span class="var-desc">Depth or Height (m)</span>
         </div>
       </div>
+
+      <div class="example-box" style="margin-top:40px;">
+        <h3>Example</h3>
+        <p>Calculate the hydrostatic pressure 10 meters below the surface of water (ρ = 1000 kg/m³):</p>
+        <p class="example-calc">P = 1000 × 9.81 × 10 = 98,100 Pa</p>
+      </div>
+    </div>
   </section>
 
   <!-- Calculator + Interactive Section -->
