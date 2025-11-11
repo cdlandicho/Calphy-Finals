@@ -8,13 +8,28 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <!-- 🔹 Fixed Logout Button -->
+  <button id="logoutBtn" class="logout-btn">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+  </button>
+
+  <!-- 🔹 Custom Logout Confirmation Popup -->
+  <div id="logoutModal" class="logout-modal">
+    <div class="logout-modal-content">
+      <h2>Are you sure you want to log out?</h2>
+      <div class="logout-modal-buttons">
+        <button id="confirmLogout" class="confirm-btn">Yes</button>
+        <button id="cancelLogout" class="cancel-btn">No</button>
+      </div>
+    </div>
+  </div>
 <main>
 <nav class="navbar">
                 <div class="navbar-content">
                     <a href="#home" class="navbar-logo">Fluids</a>
                     <div class="navbar-links">
                         <a href="#about">Topics</a>
-                        <a href="../about.html">About</a>
+                        <a href="/about/about.html">About</a>
                         <a href="../Quiz/quiz.html">Quiz</a>
                         <a href="../Leanderboard/leaderboard.html">Leaderboard</a>
                     </div>
@@ -176,5 +191,25 @@
 
 </main>
 <script src="./script.js"></script>
+
+<audio id="bgMusic" autoplay loop muted>
+  <source src="./image/Sea Waves - Sound Effect.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="clickSound">
+  <source src="./image/Water Splash Sound Effect.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.body.addEventListener('click', () => {
+  const music = document.getElementById('bgMusic');
+  music.muted = false;
+  music.play();
+}, { once: true });
+</script>
+
+
+
+
 </body>
 </html>

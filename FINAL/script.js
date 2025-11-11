@@ -22,10 +22,28 @@ function smoothScroll(target, duration = 1500) {
   requestAnimationFrame(animate);
 }
 
-// Scroll button
 const scrollBtn = document.getElementById('scrollBtn');
 const aboutSection = document.getElementById('about');
-scrollBtn.addEventListener('click', () => smoothScroll(aboutSection, 2000));
+const clickSound = document.getElementById('clickSound');
+
+scrollBtn.addEventListener('click', () => {
+  const clickSound = document.getElementById('clickSound');
+  const aboutSection = document.getElementById('about');
+
+  // Delay click sound slightly so it won't conflict with bg unmute
+  setTimeout(() => {
+    if (clickSound) {
+      clickSound.currentTime = 0;
+      clickSound.volume = 0.7;
+      clickSound.play().catch(err => console.log('Click sound blocked:', err));
+    }
+  }, 200); // small delay (0.2s)
+
+  smoothScroll(aboutSection, 2000);
+});
+
+
+
 
 // Navbar links
 const navLinks = document.querySelectorAll('nav a');
@@ -212,3 +230,33 @@ function initChatbot() {
 
   chatbotContainer.style.display = "none";
 }
+
+const logoutBtn = document.getElementById('logoutBtn');
+const logoutModal = document.getElementById('logoutModal');
+const confirmLogout = document.getElementById('confirmLogout');
+const cancelLogout = document.getElementById('cancelLogout');
+
+// Open modal when logout is clicked
+logoutBtn.addEventListener('click', () => {
+  logoutModal.style.display = 'flex';
+});
+
+// Confirm logout
+confirmLogout.addEventListener('click', () => {
+  window.location.href = "../login.html"; // change link if needed
+});
+
+// Cancel logout
+cancelLogout.addEventListener('click', () => {
+  logoutModal.style.display = 'none';
+});
+
+// Optional: close modal if clicked outside the box
+window.addEventListener('click', (e) => {
+  if (e.target === logoutModal) {
+    logoutModal.style.display = 'none';
+  }
+});
+
+
+
