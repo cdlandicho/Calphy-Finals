@@ -456,3 +456,8 @@ backToResultBtn.onclick = () => {
   reviewWrapper.style.display = "none";
   resultWrapper.style.display = "flex";
 };
+// Go to Leaderboard
+const leaderboardBtn = document.getElementById("leaderboard-btn");
+leaderboardBtn.onclick = () => {
+  window.location.href = "../Leanderboard/leaderboard.html";
+};
